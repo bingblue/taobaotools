@@ -139,6 +139,12 @@
             <artifactId>jackson-mapper-asl</artifactId>
             <version>1.9.13</version>
         </dependency>
+        <!-- okhttp  -->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>3.9.1</version>
+        </dependency>
         <!-- 上传组件包 -->
         <dependency>
             <groupId>commons-fileupload</groupId>

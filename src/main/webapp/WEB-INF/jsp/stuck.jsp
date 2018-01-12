@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Stuck</h1>
+        <h1>此页面是卡首屏功能主页。</h1>
     </body>
 </html>
