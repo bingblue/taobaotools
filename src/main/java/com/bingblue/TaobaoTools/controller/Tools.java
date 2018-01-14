@@ -27,4 +27,15 @@ public class Tools {
         return jsonObject;
     }
 
+    public static JSONObject error(String errorMsg) {
+        
+        JSONObject errorMsgObject = new JSONObject();
+        errorMsgObject.put("Msg", errorMsg);
+        
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("Result", Status.ERROR);
+        jsonObject.put("Data", errorMsgObject);
+        return jsonObject;
+    }
+
 }

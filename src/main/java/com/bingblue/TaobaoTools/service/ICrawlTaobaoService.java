@@ -5,6 +5,8 @@
  */
 package com.bingblue.TaobaoTools.service;
 
+import java.util.Map;
+
 /**
  *
  * @author SayMing
@@ -12,6 +14,6 @@ package com.bingblue.TaobaoTools.service;
  */
 public interface ICrawlTaobaoService<T> {
     
-    public T crawl(T result);
+    public T crawl(T result, Map params);
     
 }

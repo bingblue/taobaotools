@@ -13,6 +13,13 @@
     <context:component-scan base-package="com.bingblue.TaobaoTools.controller" />
     <context:component-scan base-package="com.bingblue.TaobaoTools.service.impl" />
     
+    <!-- 解决ResponseBody 返回 json 中文乱码问题
+    1.jackson依赖
+    2.SpringMVC配置文件中加上<mvc:annotation-driven/>注解
+    3.Controller中的@ResponseBody注解
+    -->
+    <mvc:annotation-driven/>
+    
     <!--避免IE执行AJAX时，返回JSON出现下载文件 -->
     <bean id="mappingJacksonHttpMessageConverter"
           class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">

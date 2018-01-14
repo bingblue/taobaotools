@@ -9,8 +9,7 @@ import org.springframework.stereotype.Service;
 import com.bingblue.TaobaoTools.service.IStuckFirstScreenService;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -19,6 +18,8 @@ import java.util.logging.Logger;
 @Service("stuckFirstScreenService")
 public class StuckFirstScreenServiceImpl implements IStuckFirstScreenService {
 
+    private Logger logger = Logger.getLogger(StuckFirstScreenServiceImpl.class);
+    
     //https://s.m.taobao.com/h5?q=洗发水&nid=529164550758
     private static final String MOBILE_BASE_URL = "https://s.m.taobao.com/h5?nid=%s&q=%s";
     //https://s.taobao.com/search?q=洗发水&nid_up=529164550758&openP4P=true
@@ -32,7 +33,7 @@ public class StuckFirstScreenServiceImpl implements IStuckFirstScreenService {
         try {
             url = String.format(MOBILE_BASE_URL, taobaoProductId, URLEncoder.encode(keywords, TAOBAO_CHARACTER_ENCODING));
         } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(StuckFirstScreenServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error(ex);
         }
         return url;
     }
@@ -43,7 +44,7 @@ public class StuckFirstScreenServiceImpl implements IStuckFirstScreenService {
         try {
             url = String.format(PC_BASE_URL, taobaoProductId, URLEncoder.encode(keywords, TAOBAO_CHARACTER_ENCODING));
         } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(StuckFirstScreenServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error(ex);
         }
         return url;
     }
