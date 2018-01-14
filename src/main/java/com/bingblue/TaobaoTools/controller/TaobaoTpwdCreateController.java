@@ -33,7 +33,7 @@ public class TaobaoTpwdCreateController {
      * @param title 分享标题
      * @return 
      */
-    @RequestMapping("/tpwd/create")
+    @RequestMapping(value = "/tpwd/create", produces = "application/json; charset=utf-8")
     @ResponseBody
     public String createTpwd(String url, String logoUrl, String title) {
         logger.info("url ===> " + url);
