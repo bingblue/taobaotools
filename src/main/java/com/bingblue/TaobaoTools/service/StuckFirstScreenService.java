@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bingblue.TaobaoTools.service.impl;
+package com.bingblue.TaobaoTools.service;
 
 import org.springframework.stereotype.Service;
-import com.bingblue.TaobaoTools.service.IStuckFirstScreenService;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import org.apache.log4j.Logger;
@@ -15,10 +14,10 @@ import org.apache.log4j.Logger;
  *
  * @author SayMing
  */
-@Service("stuckFirstScreenService")
-public class StuckFirstScreenServiceImpl implements IStuckFirstScreenService {
+@Service()
+public class StuckFirstScreenService{
 
-    private Logger logger = Logger.getLogger(StuckFirstScreenServiceImpl.class);
+    private Logger logger = Logger.getLogger(StuckFirstScreenService.class);
     
     //https://s.m.taobao.com/h5?q=洗发水&nid=529164550758
     private static final String MOBILE_BASE_URL = "https://s.m.taobao.com/h5?nid=%s&q=%s";
@@ -27,7 +26,6 @@ public class StuckFirstScreenServiceImpl implements IStuckFirstScreenService {
     //编码格式
     private static final String TAOBAO_CHARACTER_ENCODING = "UTF-8";
 
-    @Override
     public String generateMobileUrl(String taobaoProductId, String keywords) {
         String url = null;
         try {
@@ -38,7 +36,6 @@ public class StuckFirstScreenServiceImpl implements IStuckFirstScreenService {
         return url;
     }
 
-    @Override
     public String generatePcUrl(String taobaoProductId, String keywords) {
         String url = null;
         try {

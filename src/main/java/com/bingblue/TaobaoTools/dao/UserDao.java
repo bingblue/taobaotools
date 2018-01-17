@@ -3,27 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bingblue.TaobaoTools.service.impl;
+package com.bingblue.TaobaoTools.dao;
 
-import com.bingblue.TaobaoTools.dao.UserMapper;
+import com.bingblue.TaobaoTools.mapper.UserMapper;
 import com.bingblue.TaobaoTools.pojo.User;
-import com.bingblue.TaobaoTools.service.IUserService;
 import javax.annotation.Resource;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author pdmilk
+ * @author SayMing
  */
-@Service("userService")
-public class UserServiceImpl implements IUserService  {
+@Repository
+public class UserDao {
 
     @Resource
     private UserMapper userMapper;
-    
-    @Override
+
     public User getUserById(int userId) {
         return userMapper.selectByPrimaryKey(userId);
     }
-    
 }

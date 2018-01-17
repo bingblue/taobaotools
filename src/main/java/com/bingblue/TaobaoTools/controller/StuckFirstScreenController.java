@@ -6,9 +6,9 @@
 package com.bingblue.TaobaoTools.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.bingblue.TaobaoTools.service.ICrawlTaobaoService;
-import com.bingblue.TaobaoTools.service.IStuckFirstScreenService;
-import com.bingblue.TaobaoTools.service.ITaobaoTpwdCreateService;
+import com.bingblue.TaobaoTools.service.SearchProductByKeywordsTaobaoService;
+import com.bingblue.TaobaoTools.service.StuckFirstScreenService;
+import com.bingblue.TaobaoTools.service.TaobaoProductService;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,10 +30,13 @@ public class StuckFirstScreenController {
     private Logger logger = Logger.getLogger(StuckFirstScreenController.class);
 
     @Resource
-    private IStuckFirstScreenService stuckFirstScreenService;
+    private StuckFirstScreenService stuckFirstScreenService;
 
-    @Resource(name = "searchProductByKeywordsTaobaoService")
-    private ICrawlTaobaoService<List> crawlTaobaoService;
+    @Resource
+    private SearchProductByKeywordsTaobaoService crawlTaobaoService;
+    
+    @Resource
+    private TaobaoProductService taobaoProductService;
 
     @Resource
     private TaobaoTpwdCreateController taobaoTpwdCreateController;
@@ -67,10 +70,8 @@ public class StuckFirstScreenController {
         }
         
         //根据关键词爬取淘宝搜索前20条结果，并追加到taobaoProductId之后，用逗号隔开。
-        List<String> productIds = new ArrayList();
-        Map<String, String> params = new HashMap<>();
-        params.put("keywords", keywords);
-        productIds = crawlTaobaoService.crawl(productIds, params);
+        List<String> productIds = crawlTaobaoService.crawl(keywords);
+        
 
         StringBuilder sb = new StringBuilder(taobaoProductId);
         for (String pid : productIds) {
@@ -147,10 +148,8 @@ public class StuckFirstScreenController {
         }
         
         //根据关键词爬取淘宝搜索前20条结果，并追加到taobaoProductId之后，用逗号隔开。
-        List<String> productIds = new ArrayList();
-        Map<String, String> params = new HashMap<>();
-        params.put("keywords", keywords);
-        productIds = crawlTaobaoService.crawl(productIds, params);
+        List<String> productIds = crawlTaobaoService.crawl(keywords);
+        
 
         StringBuilder sb = new StringBuilder(taobaoProductId);
         sb.append(",").append(competitorProductId1).append(",")

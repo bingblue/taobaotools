@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
  *
  * @author pdmilk
  */
-@Controller
+@Controller("/index")
 public class IndexController {
     
-    @RequestMapping("/index")
+    @RequestMapping()
     public String toIndex(HttpServletRequest request, Model model){
         return "index";
     }

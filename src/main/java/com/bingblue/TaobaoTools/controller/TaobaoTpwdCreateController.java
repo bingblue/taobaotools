@@ -6,7 +6,7 @@
 package com.bingblue.TaobaoTools.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.bingblue.TaobaoTools.service.ITaobaoTpwdCreateService;
+import com.bingblue.TaobaoTools.service.TaobaoTpwdCreateService;
 import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -24,7 +24,7 @@ public class TaobaoTpwdCreateController {
     private Logger logger = Logger.getLogger(TaobaoTpwdCreateController.class);
     
     @Resource
-    private ITaobaoTpwdCreateService taobaoTpwdCreateService;
+    private TaobaoTpwdCreateService taobaoTpwdCreateService;
 
     /**
      * 生成淘口令

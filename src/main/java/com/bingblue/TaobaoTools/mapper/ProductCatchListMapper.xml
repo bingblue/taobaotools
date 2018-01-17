@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bingblue.TaobaoTools.mapper.ProductCatchListMapper" >
+    <resultMap id="BaseResultMap" type="com.bingblue.TaobaoTools.pojo.ProductCatchList" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="keywords" property="keywords" jdbcType="VARCHAR" />
+        <result column="happenDate" property="happendate" jdbcType="DATE" />
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="com.bingblue.TaobaoTools.pojo.ProductCatchList" extends="BaseResultMap" >
+        <result column="productIds" property="productids" jdbcType="LONGVARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id, keywords, happenDate
+    </sql>
+    <sql id="Blob_Column_List" >
+        productIds
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
+        from t_productcatchlist
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from t_productcatchlist
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.bingblue.TaobaoTools.pojo.ProductCatchList" >
+        insert into t_productcatchlist (id, keywords, happenDate, 
+        productIds)
+        values (#{id,jdbcType=INTEGER}, #{keywords,jdbcType=VARCHAR}, #{happendate,jdbcType=DATE}, 
+        #{productids,jdbcType=LONGVARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.bingblue.TaobaoTools.pojo.ProductCatchList" >
+        insert into t_productcatchlist
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="keywords != null" >
+                keywords,
+            </if>
+            <if test="happendate != null" >
+                happenDate,
+            </if>
+            <if test="productids != null" >
+                productIds,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="keywords != null" >
+                #{keywords,jdbcType=VARCHAR},
+            </if>
+            <if test="happendate != null" >
+                #{happendate,jdbcType=DATE},
+            </if>
+            <if test="productids != null" >
+                #{productids,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bingblue.TaobaoTools.pojo.ProductCatchList" >
+        update t_productcatchlist
+        <set >
+            <if test="keywords != null" >
+                keywords = #{keywords,jdbcType=VARCHAR},
+            </if>
+            <if test="happendate != null" >
+                happenDate = #{happendate,jdbcType=DATE},
+            </if>
+            <if test="productids != null" >
+                productIds = #{productids,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bingblue.TaobaoTools.pojo.ProductCatchList" >
+        update t_productcatchlist
+        set keywords = #{keywords,jdbcType=VARCHAR},
+        happenDate = #{happendate,jdbcType=DATE},
+        productIds = #{productids,jdbcType=LONGVARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.bingblue.TaobaoTools.pojo.ProductCatchList" >
+        update t_productcatchlist
+        set keywords = #{keywords,jdbcType=VARCHAR},
+        happenDate = #{happendate,jdbcType=DATE}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+  
+    <select id="selectOne" resultMap="ResultMapWithBLOBs" parameterType="com.bingblue.TaobaoTools.pojo.ProductCatchList" >
+        select 
+        <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
+        from t_productcatchlist
+        where keywords = #{keywords,jdbcType=VARCHAR}
+        and happenDate = #{happendate,jdbcType=DATE}
+        ORDER BY id desc
+        limit 1
+    </select>
+  
+</mapper>

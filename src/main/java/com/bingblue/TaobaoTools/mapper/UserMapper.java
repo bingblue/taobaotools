@@ -1,4 +1,4 @@
-package com.bingblue.TaobaoTools.dao;
+package com.bingblue.TaobaoTools.mapper;
 
 import com.bingblue.TaobaoTools.pojo.User;
 

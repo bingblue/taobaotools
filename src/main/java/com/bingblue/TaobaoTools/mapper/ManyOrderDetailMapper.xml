@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bingblue.TaobaoTools.mapper.ManyOrderDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.bingblue.TaobaoTools.pojo.ManyOrderDetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="headId" property="headid" jdbcType="INTEGER" />
+    <result column="keywords" property="keywords" jdbcType="VARCHAR" />
+    <result column="limitClickQuantity" property="limitclickquantity" jdbcType="INTEGER" />
+    <result column="clickQuantity" property="clickquantity" jdbcType="INTEGER" />
+    <result column="clickCount" property="clickcount" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.bingblue.TaobaoTools.pojo.ManyOrderDetail" extends="BaseResultMap" >
+    <result column="productUrl" property="producturl" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, headId, keywords, limitClickQuantity, clickQuantity, clickCount
+  </sql>
+  <sql id="Blob_Column_List" >
+    productUrl
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_manyorderdetail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_manyorderdetail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bingblue.TaobaoTools.pojo.ManyOrderDetail" >
+    insert into t_manyorderdetail (id, headId, keywords, 
+      limitClickQuantity, clickQuantity, clickCount, 
+      productUrl)
+    values (#{id,jdbcType=INTEGER}, #{headid,jdbcType=INTEGER}, #{keywords,jdbcType=VARCHAR}, 
+      #{limitclickquantity,jdbcType=INTEGER}, #{clickquantity,jdbcType=INTEGER}, #{clickcount,jdbcType=INTEGER}, 
+      #{producturl,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bingblue.TaobaoTools.pojo.ManyOrderDetail" >
+    insert into t_manyorderdetail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="headid != null" >
+        headId,
+      </if>
+      <if test="keywords != null" >
+        keywords,
+      </if>
+      <if test="limitclickquantity != null" >
+        limitClickQuantity,
+      </if>
+      <if test="clickquantity != null" >
+        clickQuantity,
+      </if>
+      <if test="clickcount != null" >
+        clickCount,
+      </if>
+      <if test="producturl != null" >
+        productUrl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="headid != null" >
+        #{headid,jdbcType=INTEGER},
+      </if>
+      <if test="keywords != null" >
+        #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="limitclickquantity != null" >
+        #{limitclickquantity,jdbcType=INTEGER},
+      </if>
+      <if test="clickquantity != null" >
+        #{clickquantity,jdbcType=INTEGER},
+      </if>
+      <if test="clickcount != null" >
+        #{clickcount,jdbcType=INTEGER},
+      </if>
+      <if test="producturl != null" >
+        #{producturl,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bingblue.TaobaoTools.pojo.ManyOrderDetail" >
+    update t_manyorderdetail
+    <set >
+      <if test="headid != null" >
+        headId = #{headid,jdbcType=INTEGER},
+      </if>
+      <if test="keywords != null" >
+        keywords = #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="limitclickquantity != null" >
+        limitClickQuantity = #{limitclickquantity,jdbcType=INTEGER},
+      </if>
+      <if test="clickquantity != null" >
+        clickQuantity = #{clickquantity,jdbcType=INTEGER},
+      </if>
+      <if test="clickcount != null" >
+        clickCount = #{clickcount,jdbcType=INTEGER},
+      </if>
+      <if test="producturl != null" >
+        productUrl = #{producturl,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bingblue.TaobaoTools.pojo.ManyOrderDetail" >
+    update t_manyorderdetail
+    set headId = #{headid,jdbcType=INTEGER},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      limitClickQuantity = #{limitclickquantity,jdbcType=INTEGER},
+      clickQuantity = #{clickquantity,jdbcType=INTEGER},
+      clickCount = #{clickcount,jdbcType=INTEGER},
+      productUrl = #{producturl,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bingblue.TaobaoTools.pojo.ManyOrderDetail" >
+    update t_manyorderdetail
+    set headId = #{headid,jdbcType=INTEGER},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      limitClickQuantity = #{limitclickquantity,jdbcType=INTEGER},
+      clickQuantity = #{clickquantity,jdbcType=INTEGER},
+      clickCount = #{clickcount,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
