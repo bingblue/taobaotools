@@ -17,36 +17,35 @@ import org.springframework.stereotype.Service;
  */
 @Service()
 public class TaobaoProductService {
-    
+
     @Resource
-    private ProductCatchListDao productCatchListDao;
-    
+    ProductCatchListDao productCatchListDao;
+
     /**
      * 插入查询结果
+     *
      * @param productCatchList
-     * @return 
+     * @return
      */
-    public Integer insertProductCatchList(ProductCatchList productCatchList){
+    public Integer insertProductCatchList(ProductCatchList productCatchList) {
         return productCatchListDao.insert(productCatchList);
     }
-    
+
     /**
      * 查询本地数据库中的历史搜索结果
+     *
      * @param keywords
      * @param happenDate
-     * @return 
+     * @return
      */
-    public String localProductCatchList(String keywords, Date happenDate){
-        ProductCatchList productCatchList = productCatchListDao.selectHistory(keywords, happenDate);
-        if(productCatchList == null){
-            return null;
-        }
-        return productCatchList.getProductids();
+    public ProductCatchList localProductCatchList(String keywords, Date happenDate) {
+        ProductCatchList productCatchList = productCatchListDao.selectOne(keywords, happenDate);
+        return productCatchList;
     }
-    
-    public String nowLocalProductCatchList(String keywords){
+
+    public ProductCatchList nowLocalProductCatchList(String keywords) {
         Date now = new Date();
         return localProductCatchList(keywords, now);
     }
-    
+
 }

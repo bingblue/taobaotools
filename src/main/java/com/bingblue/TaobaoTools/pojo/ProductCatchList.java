@@ -7,9 +7,9 @@ public class ProductCatchList {
 
     private String keywords;
 
-    private Date happendate;
+    private Date happenDate;
 
-    private String productids;
+    private String productIds;
 
     public Integer getId() {
         return id;
@@ -27,19 +27,19 @@ public class ProductCatchList {
         this.keywords = keywords == null ? null : keywords.trim();
     }
 
-    public Date getHappendate() {
-        return happendate;
+    public Date getHappenDate() {
+        return happenDate;
     }
 
-    public void setHappendate(Date happendate) {
-        this.happendate = happendate;
+    public void setHappenDate(Date happenDate) {
+        this.happenDate = happenDate;
     }
 
-    public String getProductids() {
-        return productids;
+    public String getProductIds() {
+        return productIds;
     }
 
-    public void setProductids(String productids) {
-        this.productids = productids == null ? null : productids.trim();
+    public void setProductIds(String productIds) {
+        this.productIds = productIds == null ? null : productIds.trim();
     }
 }

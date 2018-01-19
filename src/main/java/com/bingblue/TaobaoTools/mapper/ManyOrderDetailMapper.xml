@@ -1,133 +1,230 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.bingblue.TaobaoTools.mapper.ManyOrderDetailMapper" >
-  <resultMap id="BaseResultMap" type="com.bingblue.TaobaoTools.pojo.ManyOrderDetail" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="headId" property="headid" jdbcType="INTEGER" />
-    <result column="keywords" property="keywords" jdbcType="VARCHAR" />
-    <result column="limitClickQuantity" property="limitclickquantity" jdbcType="INTEGER" />
-    <result column="clickQuantity" property="clickquantity" jdbcType="INTEGER" />
-    <result column="clickCount" property="clickcount" jdbcType="INTEGER" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bingblue.TaobaoTools.mapper.ManyOrderDetailMapper">
+  <resultMap id="BaseResultMap" type="com.bingblue.TaobaoTools.pojo.ManyOrderDetail">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="head_id" jdbcType="INTEGER" property="headId" />
+    <result column="keywords" jdbcType="VARCHAR" property="keywords" />
+    <result column="limit_click_quantity" jdbcType="INTEGER" property="limitClickQuantity" />
+    <result column="click_quantity" jdbcType="INTEGER" property="clickQuantity" />
+    <result column="click_count" jdbcType="INTEGER" property="clickCount" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.bingblue.TaobaoTools.pojo.ManyOrderDetail" extends="BaseResultMap" >
-    <result column="productUrl" property="producturl" jdbcType="LONGVARCHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    id, headId, keywords, limitClickQuantity, clickQuantity, clickCount
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
   </sql>
-  <sql id="Blob_Column_List" >
-    productUrl
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
   </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <sql id="Base_Column_List">
+    id, head_id, keywords, limit_click_quantity, click_quantity, click_count
+  </sql>
+  <select id="selectByExample" parameterType="com.bingblue.TaobaoTools.pojo.ManyOrderDetailExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_manyorderdetail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from t_manyorderdetail
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_manyorderdetail
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.bingblue.TaobaoTools.pojo.ManyOrderDetail" >
-    insert into t_manyorderdetail (id, headId, keywords, 
-      limitClickQuantity, clickQuantity, clickCount, 
-      productUrl)
-    values (#{id,jdbcType=INTEGER}, #{headid,jdbcType=INTEGER}, #{keywords,jdbcType=VARCHAR}, 
-      #{limitclickquantity,jdbcType=INTEGER}, #{clickquantity,jdbcType=INTEGER}, #{clickcount,jdbcType=INTEGER}, 
-      #{producturl,jdbcType=LONGVARCHAR})
+  <delete id="deleteByExample" parameterType="com.bingblue.TaobaoTools.pojo.ManyOrderDetailExample">
+    delete from t_manyorderdetail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bingblue.TaobaoTools.pojo.ManyOrderDetail">
+    <!--<selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>-->
+    insert into t_manyorderdetail (id, head_id, keywords, 
+      limit_click_quantity, click_quantity, click_count
+      )
+    values (#{id,jdbcType=INTEGER}, #{headId,jdbcType=INTEGER}, #{keywords,jdbcType=VARCHAR}, 
+      #{limitClickQuantity,jdbcType=INTEGER}, #{clickQuantity,jdbcType=INTEGER}, #{clickCount,jdbcType=INTEGER}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.bingblue.TaobaoTools.pojo.ManyOrderDetail" >
+  <insert id="insertSelective" parameterType="com.bingblue.TaobaoTools.pojo.ManyOrderDetail">
+    <!--<selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>-->
     insert into t_manyorderdetail
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      <if test="headId != null">
+        head_id,
       </if>
-      <if test="headid != null" >
-        headId,
-      </if>
-      <if test="keywords != null" >
+      <if test="keywords != null">
         keywords,
       </if>
-      <if test="limitclickquantity != null" >
-        limitClickQuantity,
+      <if test="limitClickQuantity != null">
+        limit_click_quantity,
       </if>
-      <if test="clickquantity != null" >
-        clickQuantity,
+      <if test="clickQuantity != null">
+        click_quantity,
       </if>
-      <if test="clickcount != null" >
-        clickCount,
-      </if>
-      <if test="producturl != null" >
-        productUrl,
+      <if test="clickCount != null">
+        click_count,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=INTEGER},
+      <if test="headId != null">
+        #{headId,jdbcType=INTEGER},
       </if>
-      <if test="headid != null" >
-        #{headid,jdbcType=INTEGER},
-      </if>
-      <if test="keywords != null" >
+      <if test="keywords != null">
         #{keywords,jdbcType=VARCHAR},
       </if>
-      <if test="limitclickquantity != null" >
-        #{limitclickquantity,jdbcType=INTEGER},
+      <if test="limitClickQuantity != null">
+        #{limitClickQuantity,jdbcType=INTEGER},
       </if>
-      <if test="clickquantity != null" >
-        #{clickquantity,jdbcType=INTEGER},
+      <if test="clickQuantity != null">
+        #{clickQuantity,jdbcType=INTEGER},
       </if>
-      <if test="clickcount != null" >
-        #{clickcount,jdbcType=INTEGER},
-      </if>
-      <if test="producturl != null" >
-        #{producturl,jdbcType=LONGVARCHAR},
+      <if test="clickCount != null">
+        #{clickCount,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bingblue.TaobaoTools.pojo.ManyOrderDetail" >
+  <select id="countByExample" parameterType="com.bingblue.TaobaoTools.pojo.ManyOrderDetailExample" resultType="java.lang.Long">
+    select count(*) from t_manyorderdetail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
     update t_manyorderdetail
-    <set >
-      <if test="headid != null" >
-        headId = #{headid,jdbcType=INTEGER},
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="keywords != null" >
+      <if test="record.headId != null">
+        head_id = #{record.headId,jdbcType=INTEGER},
+      </if>
+      <if test="record.keywords != null">
+        keywords = #{record.keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="record.limitClickQuantity != null">
+        limit_click_quantity = #{record.limitClickQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="record.clickQuantity != null">
+        click_quantity = #{record.clickQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="record.clickCount != null">
+        click_count = #{record.clickCount,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_manyorderdetail
+    set id = #{record.id,jdbcType=INTEGER},
+      head_id = #{record.headId,jdbcType=INTEGER},
+      keywords = #{record.keywords,jdbcType=VARCHAR},
+      limit_click_quantity = #{record.limitClickQuantity,jdbcType=INTEGER},
+      click_quantity = #{record.clickQuantity,jdbcType=INTEGER},
+      click_count = #{record.clickCount,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bingblue.TaobaoTools.pojo.ManyOrderDetail">
+    update t_manyorderdetail
+    <set>
+      <if test="headId != null">
+        head_id = #{headId,jdbcType=INTEGER},
+      </if>
+      <if test="keywords != null">
         keywords = #{keywords,jdbcType=VARCHAR},
       </if>
-      <if test="limitclickquantity != null" >
-        limitClickQuantity = #{limitclickquantity,jdbcType=INTEGER},
+      <if test="limitClickQuantity != null">
+        limit_click_quantity = #{limitClickQuantity,jdbcType=INTEGER},
       </if>
-      <if test="clickquantity != null" >
-        clickQuantity = #{clickquantity,jdbcType=INTEGER},
+      <if test="clickQuantity != null">
+        click_quantity = #{clickQuantity,jdbcType=INTEGER},
       </if>
-      <if test="clickcount != null" >
-        clickCount = #{clickcount,jdbcType=INTEGER},
-      </if>
-      <if test="producturl != null" >
-        productUrl = #{producturl,jdbcType=LONGVARCHAR},
+      <if test="clickCount != null">
+        click_count = #{clickCount,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bingblue.TaobaoTools.pojo.ManyOrderDetail" >
+  <update id="updateByPrimaryKey" parameterType="com.bingblue.TaobaoTools.pojo.ManyOrderDetail">
     update t_manyorderdetail
-    set headId = #{headid,jdbcType=INTEGER},
+    set head_id = #{headId,jdbcType=INTEGER},
       keywords = #{keywords,jdbcType=VARCHAR},
-      limitClickQuantity = #{limitclickquantity,jdbcType=INTEGER},
-      clickQuantity = #{clickquantity,jdbcType=INTEGER},
-      clickCount = #{clickcount,jdbcType=INTEGER},
-      productUrl = #{producturl,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.bingblue.TaobaoTools.pojo.ManyOrderDetail" >
-    update t_manyorderdetail
-    set headId = #{headid,jdbcType=INTEGER},
-      keywords = #{keywords,jdbcType=VARCHAR},
-      limitClickQuantity = #{limitclickquantity,jdbcType=INTEGER},
-      clickQuantity = #{clickquantity,jdbcType=INTEGER},
-      clickCount = #{clickcount,jdbcType=INTEGER}
+      limit_click_quantity = #{limitClickQuantity,jdbcType=INTEGER},
+      click_quantity = #{clickQuantity,jdbcType=INTEGER},
+      click_count = #{clickCount,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

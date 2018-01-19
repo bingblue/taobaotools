@@ -58,8 +58,8 @@ public class SearchProductByKeywordsTaobaoService {
     public List crawl(String keywords) {
         List result = new ArrayList();
         //1.查本地数据库
-        String productIds = taobaoProductService.nowLocalProductCatchList(keywords);
-        if (null == productIds || productIds.isEmpty()) {
+        ProductCatchList productCatchList = taobaoProductService.nowLocalProductCatchList(keywords);
+        if (null == productCatchList) {
             LocalDate now = LocalDate.now();
             DateTimeFormatter df = DateTimeFormatter.BASIC_ISO_DATE;
             try {
@@ -92,11 +92,11 @@ public class SearchProductByKeywordsTaobaoService {
                                 }
                                 //插入本地数据库
                                 if(productIdsB.length() > 0){
-                                    ProductCatchList productCatchList = new ProductCatchList();
-                                    productCatchList.setHappendate(new Date());
-                                    productCatchList.setKeywords(keywords);
-                                    productCatchList.setProductids(productIdsB.substring(1));
-                                    taobaoProductService.insertProductCatchList(productCatchList);
+                                    ProductCatchList insertProductCatchList = new ProductCatchList();
+                                    insertProductCatchList.setHappenDate(new Date());
+                                    insertProductCatchList.setKeywords(keywords);
+                                    insertProductCatchList.setProductIds(productIdsB.substring(1));
+                                    taobaoProductService.insertProductCatchList(insertProductCatchList);
                                 }
                             }
                         }
@@ -107,7 +107,7 @@ public class SearchProductByKeywordsTaobaoService {
                 logger.error(ex);
             }
         } else {
-            result.addAll(Arrays.asList(productIds.split(",")));
+            result.addAll(Arrays.asList(productCatchList.getProductIds().split(",")));
         }
 
         logger.info("result size ===>" + result.size());

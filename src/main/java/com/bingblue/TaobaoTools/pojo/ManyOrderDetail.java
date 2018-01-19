@@ -3,17 +3,15 @@ package com.bingblue.TaobaoTools.pojo;
 public class ManyOrderDetail {
     private Integer id;
 
-    private Integer headid;
+    private Integer headId;
 
     private String keywords;
 
-    private Integer limitclickquantity;
+    private Integer limitClickQuantity;
 
-    private Integer clickquantity;
+    private Integer clickQuantity;
 
-    private Integer clickcount;
-
-    private String producturl;
+    private Integer clickCount;
 
     public Integer getId() {
         return id;
@@ -23,12 +21,12 @@ public class ManyOrderDetail {
         this.id = id;
     }
 
-    public Integer getHeadid() {
-        return headid;
+    public Integer getHeadId() {
+        return headId;
     }
 
-    public void setHeadid(Integer headid) {
-        this.headid = headid;
+    public void setHeadId(Integer headId) {
+        this.headId = headId;
     }
 
     public String getKeywords() {
@@ -39,35 +37,27 @@ public class ManyOrderDetail {
         this.keywords = keywords == null ? null : keywords.trim();
     }
 
-    public Integer getLimitclickquantity() {
-        return limitclickquantity;
+    public Integer getLimitClickQuantity() {
+        return limitClickQuantity;
     }
 
-    public void setLimitclickquantity(Integer limitclickquantity) {
-        this.limitclickquantity = limitclickquantity;
+    public void setLimitClickQuantity(Integer limitClickQuantity) {
+        this.limitClickQuantity = limitClickQuantity;
     }
 
-    public Integer getClickquantity() {
-        return clickquantity;
+    public Integer getClickQuantity() {
+        return clickQuantity;
     }
 
-    public void setClickquantity(Integer clickquantity) {
-        this.clickquantity = clickquantity;
+    public void setClickQuantity(Integer clickQuantity) {
+        this.clickQuantity = clickQuantity;
     }
 
-    public Integer getClickcount() {
-        return clickcount;
+    public Integer getClickCount() {
+        return clickCount;
     }
 
-    public void setClickcount(Integer clickcount) {
-        this.clickcount = clickcount;
-    }
-
-    public String getProducturl() {
-        return producturl;
-    }
-
-    public void setProducturl(String producturl) {
-        this.producturl = producturl == null ? null : producturl.trim();
+    public void setClickCount(Integer clickCount) {
+        this.clickCount = clickCount;
     }
 }

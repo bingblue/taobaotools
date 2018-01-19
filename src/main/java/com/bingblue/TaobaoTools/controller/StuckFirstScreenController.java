@@ -8,11 +8,7 @@ package com.bingblue.TaobaoTools.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.bingblue.TaobaoTools.service.SearchProductByKeywordsTaobaoService;
 import com.bingblue.TaobaoTools.service.StuckFirstScreenService;
-import com.bingblue.TaobaoTools.service.TaobaoProductService;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -34,9 +30,6 @@ public class StuckFirstScreenController {
 
     @Resource
     private SearchProductByKeywordsTaobaoService crawlTaobaoService;
-    
-    @Resource
-    private TaobaoProductService taobaoProductService;
 
     @Resource
     private TaobaoTpwdCreateController taobaoTpwdCreateController;
