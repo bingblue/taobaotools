@@ -28,7 +28,9 @@ public interface ManyOrderBillMapper {
 
     int updateByPrimaryKey(ManyOrderBill record);
     
+    //自定义Start
     ManyOrderBill selectOneHasDetails(Integer id);
     
-    List<ManyOrderBill> selectHasDetails(@Param("memberId") Integer memberId, @Param("page") Integer page, @Param("quantity") Integer quantity);
+    List<ManyOrderBill> selectByExampleLimit(ManyOrderBillExample example);
+    //自定义End
 }

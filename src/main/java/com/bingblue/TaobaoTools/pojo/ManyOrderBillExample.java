@@ -5,6 +5,28 @@ import java.util.Date;
 import java.util.List;
 
 public class ManyOrderBillExample {
+    
+    //自定义Start
+    protected Integer startRow;
+    protected Integer pageSize;
+
+    public Integer getStartRow() {
+        return startRow;
+    }
+
+    public void setStartRow(Integer startRow) {
+        this.startRow = startRow;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
+    //自定义End
+    
     protected String orderByClause;
 
     protected boolean distinct;

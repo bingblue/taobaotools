@@ -109,6 +109,9 @@
         <if test="orderByClause != null">
             order by ${orderByClause}
         </if>
+        <if test="startRow != null and pageSize != null and pageSize != 0">
+            limit #{startRow},#{pageSize}
+        </if>
     </select>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         <!--
@@ -343,28 +346,28 @@
         b.click_quantity, 
         b.click_count
         from 
-        t_manyorderbill a,
-        t_manyorderdetail b
-        where a.id = #{id} and b.head_id = a.id
+        t_manyorderbill a
+        left join t_manyorderdetail b on b.head_id = a.id
+        where a.id = #{id}
     </select>
     
-    <select id="selectHasDetails" parameterType="map" resultMap="HasDetailsResultMap">
-        SELECT
-        a.*, b.id AS detail_id,
-        b.head_id,
-        b.keywords,
-        b.limit_click_quantity,
-        b.click_quantity,
-        b.click_count
-        FROM
-        t_manyorderbill a
-        LEFT JOIN t_manyorderdetail b ON b.head_id = a.id
-        WHERE
-        a.member_id = #{memberId}
+    <select id="selectByExampleLimit" parameterType="com.bingblue.TaobaoTools.pojo.ManyOrderBillExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from t_manyorderbill
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
         <if test="page != null">
-            limit #{page}
+            limit #{startRow}
             <if test="quantity != null">
-                , #{quantity}
+                , #{pageSize}
             </if>
         </if>
     </select>

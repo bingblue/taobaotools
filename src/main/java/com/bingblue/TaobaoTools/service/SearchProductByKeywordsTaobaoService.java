@@ -16,11 +16,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.annotation.Resource;
+import okhttp3.Cookie;
+import okhttp3.CookieJar;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -42,16 +45,43 @@ public class SearchProductByKeywordsTaobaoService {
     @Resource
     private TaobaoProductService taobaoProductService;
 
+    private final LocalCookieStore cookieStore = new LocalCookieStore(new HashMap());
     private final OkHttpClient httpClient = new OkHttpClient.Builder()
             .retryOnConnectionFailure(true)
             .connectTimeout(12, TimeUnit.SECONDS)
             .readTimeout(12, TimeUnit.SECONDS)
+            .cookieJar(new CookieJar() {
+                @Override
+                public void saveFromResponse(HttpUrl url, List<Cookie> cookies) {
+                    cookieStore.add(url, cookies);
+
+                    if ("pass.tmall.com".equals(url.host())) {
+                        List<Cookie> listCookies = (List<Cookie>) cookieStore.get("list.tmall.com");
+                        if (listCookies.isEmpty()) {
+                            cookieStore.add("list.tmall.com", cookies);
+                        }
+                    }
+
+                    logger.info("Response has cookies ===> " + (cookies != null) + " Response url :" + url.toString());
+//                    for (Cookie cookie : cookies) {
+//                        System.out.println(cookie.name() + " ===> " + cookie.value());
+//                    }
+                }
+
+                @Override
+                public List<Cookie> loadForRequest(HttpUrl url) {
+                    List<Cookie> cookies = (List<Cookie>) cookieStore.get(url);
+                    logger.info("Request has cookies ===> " + (cookies != null) + " Request url :" + url.toString());
+                    return cookies;
+                }
+            })
             .build();
     private static final String BASE_TAOBAO_URL = "https://s.taobao.com/search?&imgfile=&js=1&stats_click=search_radio_all%3A1&ie=utf8";
     private static final String FIND_PRODUCT_REG_EX = "(?<=g_page_config = )[\\s\\S]*?(\\}(?=;))";
 
     /**
      * https://s.taobao.com/search?q=%E6%B4%97%E5%8F%91%E6%B0%B4&imgfile=&js=1&stats_click=search_radio_all%3A1&initiative_id=staobaoz_20180113&ie=utf8
+     *
      * @param keywords 搜索关键字
      * @return 商品Ids
      */
@@ -91,7 +121,7 @@ public class SearchProductByKeywordsTaobaoService {
                                     productIdsB.append(",").append(nId);
                                 }
                                 //插入本地数据库
-                                if(productIdsB.length() > 0){
+                                if (productIdsB.length() > 0) {
                                     ProductCatchList insertProductCatchList = new ProductCatchList();
                                     insertProductCatchList.setHappenDate(new Date());
                                     insertProductCatchList.setKeywords(keywords);

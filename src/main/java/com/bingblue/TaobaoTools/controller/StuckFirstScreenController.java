@@ -29,9 +29,6 @@ public class StuckFirstScreenController {
     private StuckFirstScreenService stuckFirstScreenService;
 
     @Resource
-    private SearchProductByKeywordsTaobaoService crawlTaobaoService;
-
-    @Resource
     private TaobaoTpwdCreateController taobaoTpwdCreateController;
 
     @RequestMapping()
@@ -61,17 +58,8 @@ public class StuckFirstScreenController {
         if(productTitle == null || "".equals(productTitle)){
             return Tools.error("口令提示内容不能为空。").toString();
         }
-        
-        //根据关键词爬取淘宝搜索前20条结果，并追加到taobaoProductId之后，用逗号隔开。
-        List<String> productIds = crawlTaobaoService.crawl(keywords);
-        
 
-        StringBuilder sb = new StringBuilder(taobaoProductId);
-        for (String pid : productIds) {
-            sb.append(",").append(pid);
-        }
-
-        String url = stuckFirstScreenService.generateMobileUrl(sb.toString(), keywords);
+        String url = stuckFirstScreenService.generateMobileUrl(taobaoProductId, keywords);
         //需要补上淘口令生成代码。Start
         return taobaoTpwdCreateController.createTpwd(url, logoUrl, productTitle);
         //需要补上淘口令生成代码。End
@@ -139,24 +127,11 @@ public class StuckFirstScreenController {
         if(productTitle == null || "".equals(productTitle)){
             return Tools.error("口令提示内容不能为空。").toString();
         }
-        
-        //根据关键词爬取淘宝搜索前20条结果，并追加到taobaoProductId之后，用逗号隔开。
-        List<String> productIds = crawlTaobaoService.crawl(keywords);
-        
 
         StringBuilder sb = new StringBuilder(taobaoProductId);
         sb.append(",").append(competitorProductId1).append(",")
                 .append(competitorProductId2).append(",")
                 .append(competitorProductId3);
-
-        int i = 0;
-        for (String pid : productIds) {
-            if (i >= 20) {
-                break;
-            }
-            sb.append(",").append(pid);
-            i++;
-        }
 
         String url = stuckFirstScreenService.generateMobileUrl(sb.toString(), keywords);
         //需要补上淘口令生成代码。Start
