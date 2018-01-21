@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 public class ManyOrderBill {
-
     private Integer id;
 
     private Integer userId;
@@ -17,7 +16,15 @@ public class ManyOrderBill {
 
     private String productUrl;
 
+    private Integer memberId;
     private List<ManyOrderDetail> manyOrderDetails;
+    public List<ManyOrderDetail> getManyOrderDetails() {
+        return manyOrderDetails;
+    }
+
+    public void setManyOrderDetails(List<ManyOrderDetail> manyOrderDetails) {
+        this.manyOrderDetails = manyOrderDetails;
+    }
 
     public Integer getId() {
         return id;
@@ -67,12 +74,11 @@ public class ManyOrderBill {
         this.productUrl = productUrl == null ? null : productUrl.trim();
     }
 
-    public List<ManyOrderDetail> getManyOrderDetails() {
-        return manyOrderDetails;
+    public Integer getMemberId() {
+        return memberId;
     }
 
-    public void setManyOrderDetails(List<ManyOrderDetail> manyOrderDetails) {
-        this.manyOrderDetails = manyOrderDetails;
+    public void setMemberId(Integer memberId) {
+        this.memberId = memberId;
     }
-
 }

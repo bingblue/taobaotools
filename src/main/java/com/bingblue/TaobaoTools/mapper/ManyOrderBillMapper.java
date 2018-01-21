@@ -30,5 +30,5 @@ public interface ManyOrderBillMapper {
     
     ManyOrderBill selectOneHasDetails(Integer id);
     
-    List<ManyOrderBill> selectHasDetails(Integer userId);
+    List<ManyOrderBill> selectHasDetails(@Param("memberId") Integer memberId, @Param("page") Integer page, @Param("quantity") Integer quantity);
 }

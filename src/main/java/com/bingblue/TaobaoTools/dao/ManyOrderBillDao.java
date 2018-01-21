@@ -41,12 +41,20 @@ public class ManyOrderBillDao {
         }
     }
     
-    public List<ManyOrderBill> selectByUserId(Integer userId, boolean hasDetails){
-        ManyOrderBillExample example = new ManyOrderBillExample();
-        example.createCriteria().andUserIdEqualTo(userId);
+    /**
+     * 查找会员下的淘词补单List
+     * @param memberId
+     * @param hasDetails
+     * @param page
+     * @param quantity
+     * @return 
+     */
+    public List<ManyOrderBill> selectByMemberId(Integer memberId, boolean hasDetails, Integer page, Integer quantity){
         if(hasDetails){
-            return mapper.selectHasDetails(userId);
+            return mapper.selectHasDetails(memberId, page, quantity);
         }else{
+            ManyOrderBillExample example = new ManyOrderBillExample();
+            example.createCriteria().andMemberIdEqualTo(memberId);
             return mapper.selectByExample(example);
         }
     }

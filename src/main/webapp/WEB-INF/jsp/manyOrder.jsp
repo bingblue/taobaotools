@@ -14,7 +14,7 @@
     <body>
         <form action="manyOrder/addOne.do" method="post" >
             ====================订单信息 START======================<br/>
-            商品链接：<input type="text" name="producturl"><br/>
+            商品链接：<input type="text" name="productUrl"><br/>
             备注：<input type="text" name="remark"><br/>
             ====================订单信息 END  ======================<br/>
             ====================订单明细 START======================<br/>
