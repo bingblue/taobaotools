@@ -24,7 +24,7 @@
             ====================订单明细 END  ======================<br/>
             <input type="submit">
         </form>
-        
+        <br/>
         <form action="manyOrder/addOne.do" method="post" >
             ====================订单信息 START======================<br/>
             商品链接：<input type="text" name="productUrl"><br/>

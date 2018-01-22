@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -45,7 +46,7 @@ public class StuckFirstScreenController {
      * @param productTitle 必填
      * @return JSON 包含淘口令
      */
-    @RequestMapping(value = "/mobile", produces = "application/json; charset=utf-8")
+    @RequestMapping(value = "/mobile", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
     @ResponseBody
     public String mobile(String taobaoProductId, String keywords, String logoUrl, String productTitle) {
         //验证
@@ -73,7 +74,7 @@ public class StuckFirstScreenController {
      * @param keywords
      * @return
      */
-    @RequestMapping(value = "/pc", produces = "application/json; charset=utf-8")
+    @RequestMapping(value = "/pc", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
     @ResponseBody
     public String pc(String taobaoProductId, String keywords) {
         //验证
@@ -104,7 +105,7 @@ public class StuckFirstScreenController {
      * @param productTitle 必填
      * @return JSON 包含淘口令
      */
-    @RequestMapping(value = "/competitor", produces = "application/json; charset=utf-8")
+    @RequestMapping(value = "/competitor", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
     @ResponseBody
     public String competitor(String competitorProductId1, String competitorProductId2, String competitorProductId3,
             String taobaoProductId, String keywords, String logoUrl, String productTitle) {

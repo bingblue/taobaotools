@@ -333,6 +333,7 @@
             <result column="limit_click_quantity" property="limitClickQuantity" />
             <result column="click_quantity" property="clickQuantity" />
             <result column="click_count" property="clickCount" />
+            <result column="detail_product_url" property="productUrl" />
         </collection>
     </resultMap>
 	
@@ -344,7 +345,8 @@
         b.keywords, 
         b.limit_click_quantity, 
         b.click_quantity, 
-        b.click_count
+        b.click_count,
+        b.product_url as detail_product_url
         from 
         t_manyorderbill a
         left join t_manyorderdetail b on b.head_id = a.id
