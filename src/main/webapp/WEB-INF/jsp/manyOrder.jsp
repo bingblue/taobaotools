@@ -12,9 +12,22 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <form action="manyOrder/addMore.do" method="post" >
+            ====================订单信息 START======================<br/>
+            备注：<input type="text" name="remark"><br/>
+            ====================订单信息 END  ======================<br/>
+            ====================订单明细 START======================<br/>
+            链接1：<input type="text" name="manyOrderDetails[0].productUrl"><br/>
+            点击量1：<input type="text" name="manyOrderDetails[0].limitClickQuantity"><br/>
+            链接2：<input type="text" name="manyOrderDetails[1].productUrl"><br/>
+            点击量2：<input type="text" name="manyOrderDetails[1].limitClickQuantity"><br/>
+            ====================订单明细 END  ======================<br/>
+            <input type="submit">
+        </form>
+        <br/>
         <form action="manyOrder/addOne.do" method="post" >
             ====================订单信息 START======================<br/>
-            商品链接：<input type="text" name="producturl"><br/>
+            商品链接：<input type="text" name="productUrl"><br/>
             备注：<input type="text" name="remark"><br/>
             ====================订单信息 END  ======================<br/>
             ====================订单明细 START======================<br/>

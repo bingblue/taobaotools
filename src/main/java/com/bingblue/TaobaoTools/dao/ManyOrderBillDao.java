@@ -8,7 +8,9 @@ package com.bingblue.TaobaoTools.dao;
 import com.bingblue.TaobaoTools.mapper.ManyOrderBillMapper;
 import com.bingblue.TaobaoTools.pojo.ManyOrderBill;
 import com.bingblue.TaobaoTools.pojo.ManyOrderBillExample;
+import com.bingblue.TaobaoTools.pojo.ManyOrderDetail;
 import java.util.List;
+import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,6 +22,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ManyOrderBillDao {
 
+    @Resource
+    private ManyOrderDetailDao manyOrderDetailDao;
+
     @Autowired
     private void setSql(SqlSessionTemplate template) {
         this.sqlSessionTemplate = template;
@@ -28,27 +33,44 @@ public class ManyOrderBillDao {
 
     private ManyOrderBillMapper mapper;
     private SqlSessionTemplate sqlSessionTemplate;
-    
-    public Integer insert(ManyOrderBill manyOrderBill){
+
+    public Integer insert(ManyOrderBill manyOrderBill) {
         return mapper.insert(manyOrderBill);
     }
-    
-    public ManyOrderBill selectOneById(Integer id, boolean hasDetails){
-        if(hasDetails){
+
+    public ManyOrderBill selectOneById(Integer id, boolean hasDetails) {
+        if (hasDetails) {
             return mapper.selectOneHasDetails(id);
-        }else{
+        } else {
             return mapper.selectByPrimaryKey(id);
         }
     }
-    
-    public List<ManyOrderBill> selectByUserId(Integer userId, boolean hasDetails){
+
+    /**
+     * 查找会员下的淘词补单List
+     *
+     * @param memberId
+     * @param hasDetails
+     * @param page
+     * @param quantity
+     * @return
+     */
+    public List<ManyOrderBill> selectByMemberId(Integer memberId, boolean hasDetails, Integer page, Integer quantity) {
         ManyOrderBillExample example = new ManyOrderBillExample();
-        example.createCriteria().andUserIdEqualTo(userId);
-        if(hasDetails){
-            return mapper.selectHasDetails(userId);
-        }else{
-            return mapper.selectByExample(example);
+        example.setStartRow(page);
+        example.setPageSize(quantity);
+        if (hasDetails) {
+            example.createCriteria().andMemberIdEqualTo(memberId);
+            List<ManyOrderBill> manyOrderBills = mapper.selectByExample(example);
+            for(ManyOrderBill manyOrderBill : manyOrderBills){
+                List<ManyOrderDetail> manyOrderDetails = manyOrderDetailDao.selectByHeadId(manyOrderBill.getId());
+                manyOrderBill.setManyOrderDetails(manyOrderDetails);
+            }
+            return manyOrderBills;
+        } else {
+            example.createCriteria().andMemberIdEqualTo(memberId);
+            return mapper.selectByExampleLimit(example);
         }
     }
-    
+
 }

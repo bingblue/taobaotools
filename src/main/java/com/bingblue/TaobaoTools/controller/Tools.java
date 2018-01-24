@@ -28,14 +28,30 @@ public class Tools {
     }
 
     public static JSONObject error(String errorMsg) {
-        
+
         JSONObject errorMsgObject = new JSONObject();
         errorMsgObject.put("Msg", errorMsg);
-        
+
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("Result", Status.ERROR);
         jsonObject.put("Data", errorMsgObject);
         return jsonObject;
     }
 
+    public static UserAgent checkUserAgent(String userAgent){
+        if(userAgent == null || userAgent.isEmpty()){
+            return UserAgent.OTHER;
+        }
+        if(userAgent.contains("MicroMessenger")){
+            return UserAgent.WEIXIN;
+        }else if(userAgent.contains("Alipay")){
+            return UserAgent.ALIPAY;
+        }else{
+            return UserAgent.OTHER;
+        }
+    }
+    
+    public enum UserAgent {
+        WEIXIN, ALIPAY, IE, CHROME, FIREFOX, OTHER
+    }
 }

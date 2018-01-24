@@ -29,19 +29,92 @@ public class ManyOrderService {
     @Resource
     private ManyOrderDetailDao manyOrderDetailDao;
     
+    @Resource
+    private StuckFirstScreenService stuckFirstScreenService;
+    
+    /**
+     * 新增淘词补单，多关键词，单链接。
+     * @param orderBill
+     * @param details
+     * @return 
+     */
     public Integer addManyOrderBillOnOneLink(ManyOrderBill orderBill, List<ManyOrderDetail> details){
         orderBill.setCreateDate(new Date());
-        orderBill.setUserId(0);
         manyOrderBillDao.insert(orderBill);
         for (ManyOrderDetail detail : details) {
+            if(null == detail.getKeywords() || detail.getKeywords().isEmpty()){
+                continue;
+            }
             detail.setHeadId(orderBill.getId());
+            detail.setProductUrl(orderBill.getProductUrl());
+            detail.setClickCount(0);
+            detail.setClickQuantity(0);
+            manyOrderDetailDao.insert(detail);
+        }
+        return orderBill.getId();
+    }
+    /**
+     * 新增淘词补单，多链接。
+     * @param orderBill
+     * @param details
+     * @return 
+     */
+    public Integer addManyOrderBillOnMoreLink(ManyOrderBill orderBill, List<ManyOrderDetail> details){
+        orderBill.setCreateDate(new Date());
+        manyOrderBillDao.insert(orderBill);
+        for (ManyOrderDetail detail : details) {
+            if(null == detail.getKeywords() || detail.getKeywords().isEmpty()){
+                continue;
+            }
+            detail.setHeadId(orderBill.getId());
+            detail.setClickCount(0);
+            detail.setClickQuantity(0);
             manyOrderDetailDao.insert(detail);
         }
         return orderBill.getId();
     }
     
+    /**
+     * 获取指定淘词补单详情
+     * @param orderId
+     * @return 
+     */
     public ManyOrderBill selectManyOrderAndDetails(Integer orderId){
         return manyOrderBillDao.selectOneById(orderId, true);
     }
+    
+    /**
+     * 获取指定会员生成过的淘词补单List。
+     * @param memberId
+     * @param page
+     * @param quantity
+     * @return 
+     */
+    public List<ManyOrderBill> manyOrderAndDetailsList(Integer memberId, Integer page, Integer quantity){
+        return manyOrderBillDao.selectByMemberId(memberId, true, page, quantity);
+    }
+    
+    public String share(Integer orderId){
+        String url = null;
+        ManyOrderDetail manyOrderDetail = manyOrderDetailDao.randomByHeadId(orderId);
+        if(manyOrderDetail != null){
+            //直接返回商品详情Url
+            if(null == manyOrderDetail.getKeywords() || manyOrderDetail.getKeywords().isEmpty()){
+                url = manyOrderDetail.getProductUrl();
+            }else{//根据关键字，淘宝链接，生成卡首屏URL。
+                String productId = StuckFirstScreenService.findProductIdFromUrl(manyOrderDetail.getProductUrl());
+                if(productId == null){
+                    return null;
+                }
+                url = stuckFirstScreenService.generateMobileUrl(productId, manyOrderDetail.getKeywords());
+            }
+            //增加点击量
+            manyOrderDetail.setClickCount(manyOrderDetail.getClickCount() + 1);
+            manyOrderDetail.setClickQuantity(manyOrderDetail.getClickQuantity() + 1);
+            manyOrderDetailDao.update(manyOrderDetail);
+        }
+        return url;
+    }
+    
     
 }

@@ -11,6 +11,7 @@ import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -33,9 +34,15 @@ public class TaobaoTpwdCreateController {
      * @param title 分享标题
      * @return 
      */
-    @RequestMapping(value = "/tpwd/create", produces = "application/json; charset=utf-8")
+    @RequestMapping(value = "/tpwd/create", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
     @ResponseBody
     public String createTpwd(String url, String logoUrl, String title) {
+        if(url == null || "".equals(url.trim())){
+            return Tools.error("待转换的链接不能为空。").toString();
+        }
+        if(title == null || "".equals(title.trim())){
+            return Tools.error("淘口令分享标题不能为空。").toString();
+        }
         logger.info("url ===> " + url);
         String tpwd = taobaoTpwdCreateService.create("", logoUrl, url, title, 0L);
         logger.info("tpwd ===> " + tpwd);

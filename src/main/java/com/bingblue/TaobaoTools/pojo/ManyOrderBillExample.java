@@ -5,6 +5,28 @@ import java.util.Date;
 import java.util.List;
 
 public class ManyOrderBillExample {
+    
+    //自定义Start
+    protected Integer startRow;
+    protected Integer pageSize;
+
+    public Integer getStartRow() {
+        return startRow;
+    }
+
+    public void setStartRow(Integer startRow) {
+        this.startRow = startRow;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
+    //自定义End
+    
     protected String orderByClause;
 
     protected boolean distinct;
@@ -492,6 +514,66 @@ public class ManyOrderBillExample {
 
         public Criteria andProductUrlNotBetween(String value1, String value2) {
             addCriterion("product_url not between", value1, value2, "productUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberIdIsNull() {
+            addCriterion("member_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberIdIsNotNull() {
+            addCriterion("member_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberIdEqualTo(Integer value) {
+            addCriterion("member_id =", value, "memberId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberIdNotEqualTo(Integer value) {
+            addCriterion("member_id <>", value, "memberId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberIdGreaterThan(Integer value) {
+            addCriterion("member_id >", value, "memberId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("member_id >=", value, "memberId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberIdLessThan(Integer value) {
+            addCriterion("member_id <", value, "memberId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberIdLessThanOrEqualTo(Integer value) {
+            addCriterion("member_id <=", value, "memberId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberIdIn(List<Integer> values) {
+            addCriterion("member_id in", values, "memberId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberIdNotIn(List<Integer> values) {
+            addCriterion("member_id not in", values, "memberId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberIdBetween(Integer value1, Integer value2) {
+            addCriterion("member_id between", value1, value2, "memberId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMemberIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("member_id not between", value1, value2, "memberId");
             return (Criteria) this;
         }
     }
