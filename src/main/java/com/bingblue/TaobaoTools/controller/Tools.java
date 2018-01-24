@@ -8,49 +8,59 @@ package com.bingblue.TaobaoTools.controller;
 import com.alibaba.fastjson.JSONObject;
 
 /**
+ * {
+ * "code":200, //200成功，其它code 是失败 "msg":"", //成功消息或失败消息，可以不传 "body": { "Tpwd":
+ * "￥TestAADPOKFzTest￥", //淘口令 "Url": "123"//原url } }
  *
  * @author SayMing
  */
 public class Tools {
 
-    public static JSONObject success(JSONObject data) {
+    public static JSONObject success(JSONObject body) {
+        return success(body, null);
+    }
+    public static JSONObject success(String msg) {
+        return success(null, msg);
+    }
+    public static JSONObject success(JSONObject body, String msg) {
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("Result", Status.SUCCESS);
-        jsonObject.put("Data", data);
+        jsonObject.put("code", Status.SUCCESS.getStatus());
+        jsonObject.put("msg", msg == null || msg.isEmpty() ? "成功。" : msg);
+        if (body != null) {
+            jsonObject.put("body", body);
+        }
         return jsonObject;
     }
 
-    public static JSONObject error(JSONObject data) {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("Result", Status.ERROR);
-        jsonObject.put("Data", data);
-        return jsonObject;
+    public static JSONObject error(JSONObject body) {
+        return error(body, null);
     }
-
     public static JSONObject error(String errorMsg) {
-
-        JSONObject errorMsgObject = new JSONObject();
-        errorMsgObject.put("Msg", errorMsg);
-
+        return error(null, errorMsg);
+    }
+    public static JSONObject error(JSONObject body, String msg) {
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("Result", Status.ERROR);
-        jsonObject.put("Data", errorMsgObject);
+        jsonObject.put("code", Status.ERROR.getStatus());
+        jsonObject.put("msg", msg == null || msg.isEmpty() ? "错误。" : msg);
+        if (body != null) {
+            jsonObject.put("body", body);
+        }
         return jsonObject;
     }
 
-    public static UserAgent checkUserAgent(String userAgent){
-        if(userAgent == null || userAgent.isEmpty()){
+    public static UserAgent checkUserAgent(String userAgent) {
+        if (userAgent == null || userAgent.isEmpty()) {
             return UserAgent.OTHER;
         }
-        if(userAgent.contains("MicroMessenger")){
+        if (userAgent.contains("MicroMessenger")) {
             return UserAgent.WEIXIN;
-        }else if(userAgent.contains("Alipay")){
+        } else if (userAgent.contains("Alipay")) {
             return UserAgent.ALIPAY;
-        }else{
+        } else {
             return UserAgent.OTHER;
         }
     }
-    
+
     public enum UserAgent {
         WEIXIN, ALIPAY, IE, CHROME, FIREFOX, OTHER
     }

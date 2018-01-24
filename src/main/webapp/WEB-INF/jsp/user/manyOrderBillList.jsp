@@ -1,6 +1,6 @@
 <%-- 
-    Document   : stuck
-    Created on : 2018-1-10, 17:20:26
+    Document   : manyOrderList
+    Created on : 2018-1-24, 22:57:48
     Author     : SayMing
 --%>
 
@@ -9,9 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>淘词补单列表</title>
     </head>
     <body>
-        <h1>此页面是卡首屏功能主页。</h1>
+        <h1>淘词补单列表</h1>
     </body>
 </html>

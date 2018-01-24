@@ -33,13 +33,13 @@ public class ManyOrderDetailDao {
         return mapper.insert(manyOrderDetail);
     }
 
-    public List<ManyOrderDetail> selectByHeadId(Integer headId) {
+    public List<ManyOrderDetail> selectByHeadId(Long headId) {
         ManyOrderDetailExample example = new ManyOrderDetailExample();
         example.createCriteria().andHeadIdEqualTo(headId);
         return mapper.selectByExample(example);
     }
 
-    public ManyOrderDetail randomByHeadId(Integer headId) {
+    public ManyOrderDetail randomByHeadId(Long headId) {
         return mapper.randomByHeadId(headId);
     }
 

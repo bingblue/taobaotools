@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bingblue.TaobaoTools.controller;
+package com.bingblue.TaobaoTools.controller.api;
 
 import com.alibaba.fastjson.JSONObject;
+import com.bingblue.TaobaoTools.controller.Tools;
 import com.bingblue.TaobaoTools.service.TaobaoTpwdCreateService;
 import javax.annotation.Resource;
 import org.apache.log4j.Logger;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author SayMing
  */
 @Controller()
-@RequestMapping("/taobao")
+@RequestMapping("/api/taobao")
 public class TaobaoTpwdCreateController {
 
     private Logger logger = Logger.getLogger(TaobaoTpwdCreateController.class);
@@ -49,13 +50,11 @@ public class TaobaoTpwdCreateController {
 
         JSONObject result;
         if (tpwd == null) {//失败
-            JSONObject object = new JSONObject();
-            object.put("Msg", "生成淘口令失败。");
-            result = Tools.error(object);
+            result = Tools.error("生成淘口令失败。");
         } else {
             JSONObject object = new JSONObject();
-            object.put("Tpwd", tpwd);
-            object.put("Url", url);
+            object.put("tpwd", tpwd);
+            object.put("url", url);
             result = Tools.success(object);
         }
 

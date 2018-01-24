@@ -1,7 +1,7 @@
 <%-- 
-    Document   : index.jsp
-    Created on : 2018-1-7, 20:39:38
-    Author     : pdmilk
+    Document   : manyOrderBillGet
+    Created on : 2018-1-24, 22:59:50
+    Author     : SayMing
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -9,9 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>淘词补单详情</title>
     </head>
     <body>
-        <h1>Hello World!web-inf</h1>
+        <h1>淘词补单详情</h1>
     </body>
 </html>

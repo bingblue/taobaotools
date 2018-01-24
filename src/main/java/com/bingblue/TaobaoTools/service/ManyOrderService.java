@@ -38,7 +38,7 @@ public class ManyOrderService {
      * @param details
      * @return 
      */
-    public Integer addManyOrderBillOnOneLink(ManyOrderBill orderBill, List<ManyOrderDetail> details){
+    public Long addManyOrderBillOnOneLink(ManyOrderBill orderBill, List<ManyOrderDetail> details){
         orderBill.setCreateDate(new Date());
         manyOrderBillDao.insert(orderBill);
         for (ManyOrderDetail detail : details) {
@@ -59,7 +59,7 @@ public class ManyOrderService {
      * @param details
      * @return 
      */
-    public Integer addManyOrderBillOnMoreLink(ManyOrderBill orderBill, List<ManyOrderDetail> details){
+    public Long addManyOrderBillOnMoreLink(ManyOrderBill orderBill, List<ManyOrderDetail> details){
         orderBill.setCreateDate(new Date());
         manyOrderBillDao.insert(orderBill);
         for (ManyOrderDetail detail : details) {
@@ -79,7 +79,7 @@ public class ManyOrderService {
      * @param orderId
      * @return 
      */
-    public ManyOrderBill selectManyOrderAndDetails(Integer orderId){
+    public ManyOrderBill selectManyOrderAndDetails(Long orderId){
         return manyOrderBillDao.selectOneById(orderId, true);
     }
     
@@ -90,11 +90,11 @@ public class ManyOrderService {
      * @param quantity
      * @return 
      */
-    public List<ManyOrderBill> manyOrderAndDetailsList(Integer memberId, Integer page, Integer quantity){
+    public List<ManyOrderBill> manyOrderAndDetailsList(Long memberId, Integer page, Integer quantity){
         return manyOrderBillDao.selectByMemberId(memberId, true, page, quantity);
     }
     
-    public String share(Integer orderId){
+    public String share(Long orderId){
         String url = null;
         ManyOrderDetail manyOrderDetail = manyOrderDetailDao.randomByHeadId(orderId);
         if(manyOrderDetail != null){
@@ -116,5 +116,8 @@ public class ManyOrderService {
         return url;
     }
     
+    public long countManyOrderByUserId(Long userId){
+        return manyOrderBillDao.count(userId);
+    }
     
 }

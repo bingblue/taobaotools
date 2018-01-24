@@ -8,7 +8,7 @@ public class ManyOrderDetail {
      *
      * @mbg.generated
      */
-    private Integer id;
+    private Long id;
 
     /**
      *
@@ -17,7 +17,7 @@ public class ManyOrderDetail {
      *
      * @mbg.generated
      */
-    private Integer headId;
+    private Long headId;
 
     /**
      *
@@ -72,7 +72,7 @@ public class ManyOrderDetail {
      *
      * @mbg.generated
      */
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -84,7 +84,7 @@ public class ManyOrderDetail {
      *
      * @mbg.generated
      */
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -96,7 +96,7 @@ public class ManyOrderDetail {
      *
      * @mbg.generated
      */
-    public Integer getHeadId() {
+    public Long getHeadId() {
         return headId;
     }
 
@@ -108,7 +108,7 @@ public class ManyOrderDetail {
      *
      * @mbg.generated
      */
-    public void setHeadId(Integer headId) {
+    public void setHeadId(Long headId) {
         this.headId = headId;
     }
 

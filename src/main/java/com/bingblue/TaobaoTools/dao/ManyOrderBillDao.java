@@ -38,7 +38,7 @@ public class ManyOrderBillDao {
         return mapper.insert(manyOrderBill);
     }
 
-    public ManyOrderBill selectOneById(Integer id, boolean hasDetails) {
+    public ManyOrderBill selectOneById(Long id, boolean hasDetails) {
         if (hasDetails) {
             return mapper.selectOneHasDetails(id);
         } else {
@@ -55,7 +55,7 @@ public class ManyOrderBillDao {
      * @param quantity
      * @return
      */
-    public List<ManyOrderBill> selectByMemberId(Integer memberId, boolean hasDetails, Integer page, Integer quantity) {
+    public List<ManyOrderBill> selectByMemberId(Long memberId, boolean hasDetails, Integer page, Integer quantity) {
         ManyOrderBillExample example = new ManyOrderBillExample();
         example.setStartRow(page);
         example.setPageSize(quantity);
@@ -72,5 +72,12 @@ public class ManyOrderBillDao {
             return mapper.selectByExampleLimit(example);
         }
     }
+    
+    public long count(Long userId){
+        ManyOrderBillExample example = new ManyOrderBillExample();
+        example.createCriteria().andUserIdEqualTo(userId);
+        return mapper.countByExample(example);
+    }
+    
 
 }

@@ -1,20 +1,17 @@
 <%-- 
-    Document   : index
-    Created on : 2018-1-22, 18:09:21
+    Document   : stuck
+    Created on : 2018-1-10, 17:20:26
     Author     : SayMing
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-    out.println("now user-agent:" + request.getHeader("user-agent"));
-%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>卡首屏</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>此页面是卡首屏功能主页。</h1>
     </body>
 </html>

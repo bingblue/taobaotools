@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bingblue.TaobaoTools.controller;
+package com.bingblue.TaobaoTools.controller.user;
 
 import com.alibaba.fastjson.JSONObject;
-import com.bingblue.TaobaoTools.service.SearchProductByKeywordsTaobaoService;
+import com.bingblue.TaobaoTools.controller.api.TaobaoTpwdCreateController;
+import com.bingblue.TaobaoTools.controller.Tools;
 import com.bingblue.TaobaoTools.service.StuckFirstScreenService;
-import java.util.List;
 import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author SayMing
  */
 @Controller
-@RequestMapping("/stuck")
+@RequestMapping("/user/stuck")
 public class StuckFirstScreenController {
 
     private Logger logger = Logger.getLogger(StuckFirstScreenController.class);
@@ -64,15 +64,14 @@ public class StuckFirstScreenController {
         //需要补上淘口令生成代码。Start
         return taobaoTpwdCreateController.createTpwd(url, logoUrl, productTitle);
         //需要补上淘口令生成代码。End
-
     }
 
     /**
      * 卡首屏 PC端
      *
-     * @param taobaoProductId
-     * @param keywords
-     * @return
+     * @param taobaoProductId 需要卡的淘宝商品Id
+     * @param keywords 关键词
+     * @return 返回包含卡首屏JSON
      */
     @RequestMapping(value = "/pc", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
     @ResponseBody
@@ -88,14 +87,14 @@ public class StuckFirstScreenController {
         String url = stuckFirstScreenService.generatePcUrl(taobaoProductId, keywords);
 
         JSONObject object = new JSONObject();
-        object.put("Url", url);
+        object.put("url", url);
         JSONObject result = Tools.success(object);
 
         return result.toJSONString();
     }
 
     /**
-     *
+     * 卡同行
      * @param competitorProductId1 必填 同行商品1
      * @param competitorProductId2 必填 同行商品2
      * @param competitorProductId3 必填 同行商品3

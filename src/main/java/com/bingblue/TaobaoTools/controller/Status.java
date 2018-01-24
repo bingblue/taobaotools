@@ -11,7 +11,7 @@ package com.bingblue.TaobaoTools.controller;
  */
 public enum Status {
     
-    SUCCESS("success"), ERROR("error");
+    SUCCESS("200"), ERROR("-200");
 
     Status(String status) {
         this.status = status;
