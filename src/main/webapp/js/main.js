@@ -37,7 +37,7 @@ $(function () {
     $.ajax({
       type: 'POST',
       url: option.url,
-      async: false,
+      async: true,
       dataType: 'json',
       data: option.data, 
       success: function(data) {
