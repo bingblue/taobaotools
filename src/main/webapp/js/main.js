@@ -42,7 +42,7 @@ $(function () {
       data: option.data, 
       success: function(data) {
         console.log('muAjax-success:', data)
-        if (data.code === 200) {
+        if (data.code == 200) {
           cb(data.body)
         } else {
           var msg = data.msg ? data.msg : '请求失败，请重试！'

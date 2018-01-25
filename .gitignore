@@ -22,3 +22,7 @@
 hs_err_pid*
 /target/
 /src/test/
+.idea/
+*.iml
+.vscode/
+.setting/
