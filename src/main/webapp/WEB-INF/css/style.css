@@ -10,6 +10,63 @@ html {
 hr {
   margin: 0;
 }
+/* tip */
+.bombsettime-wp {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  text-align: center;
+  background: rgba(1, 1, 1, 0);
+  z-index: 999;
+  top: 0;
+}
+.bombsettime-wp .bombsettime {
+  width: 250px;
+  margin: 0 auto;
+  border-radius: 2px;
+  background-color: rgba(0, 0, 0, .5);
+  padding: 25px 0 25px;
+  position: relative;
+  top: 40%;
+  color: #fff;
+}
+/* bomb */
+.bomb-mask {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  min-height: 150px;
+  margin-left: -200px;
+  padding: 50px;
+  background: #fff;
+  margin-top: -125px;
+  border: 1px solid #eee;
+  border-radius: 5%;
+}
+.bomb-mask span {
+  font-size: 18px;
+}
+.bomb-mask input {
+  width: 100%;
+  height: 40px;
+  border:1px solid #d2d2d2;
+  border-radius: 5px;
+  margin: 5px auto 30px;
+  padding: 0 10px;
+}
+.bomb-mask a {
+  display: block;
+  width: 250px;
+  height: 40px;
+  background: #ffbb32;
+  border-radius: 5px;
+  margin: 0px auto 0px;
+  line-height: 40px;
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+}
 /* header */
 header {
   width: 100%;
