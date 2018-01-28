@@ -9,8 +9,7 @@ import com.bingblue.TaobaoTools.mapper.ProductCatchListMapper;
 import com.bingblue.TaobaoTools.pojo.ProductCatchList;
 import com.bingblue.TaobaoTools.pojo.ProductCatchListExample;
 import java.util.Date;
-import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -19,25 +18,19 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class ProductCatchListDao {
-    
-    @Autowired
-    private void setSql(SqlSessionTemplate template) {
-        this.sqlSessionTemplate = template;
-        this.mapper = this.sqlSessionTemplate.getMapper(ProductCatchListMapper.class);
-    }
 
+    @Resource
     private ProductCatchListMapper mapper;
-    private SqlSessionTemplate sqlSessionTemplate;
-    
-    public ProductCatchList selectOne(String keywords, Date happenDate){
+
+    public ProductCatchList selectOne(String keywords, Date happenDate) {
         ProductCatchListExample example = new ProductCatchListExample();
         example.or().andHappenDateEqualTo(happenDate).andKeywordsEqualTo(keywords);
         ProductCatchList productCatchList = mapper.selectOneByExample(example);
         return productCatchList;
     }
-    
-    public Integer insert(ProductCatchList productCatchList){
+
+    public Integer insert(ProductCatchList productCatchList) {
         return mapper.insert(productCatchList);
     }
-    
+
 }
