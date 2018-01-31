@@ -24,15 +24,8 @@ public class ManyOrderBillDao {
 
     @Resource
     private ManyOrderDetailDao manyOrderDetailDao;
-
-    @Autowired
-    private void setSql(SqlSessionTemplate template) {
-        this.sqlSessionTemplate = template;
-        this.mapper = this.sqlSessionTemplate.getMapper(ManyOrderBillMapper.class);
-    }
-
+    @Resource
     private ManyOrderBillMapper mapper;
-    private SqlSessionTemplate sqlSessionTemplate;
 
     public Integer insert(ManyOrderBill manyOrderBill) {
         return mapper.insert(manyOrderBill);

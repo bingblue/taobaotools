@@ -9,8 +9,7 @@ import com.bingblue.TaobaoTools.mapper.ManyOrderDetailMapper;
 import com.bingblue.TaobaoTools.pojo.ManyOrderDetail;
 import com.bingblue.TaobaoTools.pojo.ManyOrderDetailExample;
 import java.util.List;
-import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -20,14 +19,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ManyOrderDetailDao {
 
-    @Autowired
-    private void setSql(SqlSessionTemplate template) {
-        this.sqlSessionTemplate = template;
-        this.mapper = this.sqlSessionTemplate.getMapper(ManyOrderDetailMapper.class);
-    }
-
+    @Resource
     private ManyOrderDetailMapper mapper;
-    private SqlSessionTemplate sqlSessionTemplate;
 
     public Integer insert(ManyOrderDetail manyOrderDetail) {
         return mapper.insert(manyOrderDetail);
