@@ -24,7 +24,7 @@
 | |功能点|完成度
 |:-|:-|:-:
 |1|[获取淘词补单信息][13]|:white_check_mark:
-|2|[获取淘词补单列表][14]|white_check_mark:
+|2|[获取淘词补单列表][14]|:white_check_mark:
 |3|[淘词补单分享链接][15]|:white_check_mark:
 
 [0]:https://www.zybuluo.com/Sayming/note/1026884
