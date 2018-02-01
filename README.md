@@ -28,6 +28,8 @@
 |1|[获取淘词补单信息][13]|:white_check_mark:
 |2|[获取淘词补单列表][14]|:white_check_mark:
 |3|[淘词补单分享链接][15]|:white_check_mark:
+|4|[卡首屏单列表][16]|:white_check_mark:
+|5|[卡首屏单获取单个][17]|:white_check_mark:
 
 [0]:https://www.zybuluo.com/Sayming/note/1026884
 [1]:https://www.zybuluo.com/Sayming/note/1026884#%E4%B8%80%E5%8D%A1%E9%A6%96%E5%B1%8F%E6%89%8B%E6%9C%BA%E7%AB%AF
@@ -39,3 +41,5 @@
 [13]:https://www.zybuluo.com/Sayming/note/1026884#%E5%85%AD%E8%8E%B7%E5%8F%96%E6%B7%98%E8%AF%8D%E8%A1%A5%E5%8D%95%E4%BF%A1%E6%81%AF
 [14]:https://www.zybuluo.com/Sayming/note/1026884#%E4%B8%83%E8%8E%B7%E5%8F%96%E6%B7%98%E8%AF%8D%E8%A1%A5%E5%8D%95%E5%88%97%E8%A1%A8
 [15]:https://www.zybuluo.com/Sayming/note/1026884#%E5%85%AB%E6%B7%98%E8%AF%8D%E8%A1%A5%E5%8D%95%E5%88%86%E4%BA%AB%E9%93%BE%E6%8E%A5
+[16]:https://www.zybuluo.com/Sayming/note/1026884#%E4%B9%9D%E5%8D%A1%E9%A6%96%E5%B1%8F%E5%8D%95%E5%88%97%E8%A1%A8
+[17]:https://www.zybuluo.com/Sayming/note/1026884#%E5%8D%81%E5%8D%A1%E9%A6%96%E5%B1%8F%E5%8D%95%E8%8E%B7%E5%8F%96%E5%8D%95%E4%B8%AA

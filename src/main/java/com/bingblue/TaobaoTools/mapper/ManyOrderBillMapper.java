@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 public interface ManyOrderBillMapper {
     //自定义Start
-    ManyOrderBill selectOneHasDetails(Long id);
+    ManyOrderBill selectOneHasDetails(@Param("id")Long id, @Param("memberId")Long memberId);
     
     List<ManyOrderBill> selectByExampleLimit(ManyOrderBillExample example);
     //自定义End

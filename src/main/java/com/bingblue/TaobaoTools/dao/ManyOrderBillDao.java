@@ -9,10 +9,9 @@ import com.bingblue.TaobaoTools.mapper.ManyOrderBillMapper;
 import com.bingblue.TaobaoTools.pojo.ManyOrderBill;
 import com.bingblue.TaobaoTools.pojo.ManyOrderBillExample;
 import com.bingblue.TaobaoTools.pojo.ManyOrderDetail;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
-import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -28,14 +27,22 @@ public class ManyOrderBillDao {
     private ManyOrderBillMapper mapper;
 
     public Integer insert(ManyOrderBill manyOrderBill) {
+        manyOrderBill.setCreateDate(new Date());
         return mapper.insert(manyOrderBill);
     }
 
-    public ManyOrderBill selectOneById(Long id, boolean hasDetails) {
+    public ManyOrderBill selectOneById(Long id, Long memberId, boolean hasDetails) {
         if (hasDetails) {
-            return mapper.selectOneHasDetails(id);
+            return mapper.selectOneHasDetails(id, memberId);
         } else {
-            return mapper.selectByPrimaryKey(id);
+            ManyOrderBillExample ex = new ManyOrderBillExample();
+            ex.createCriteria().andIdEqualTo(id).andMemberIdEqualTo(memberId);
+            List<ManyOrderBill> datas = mapper.selectByExample(ex);
+            if(datas.isEmpty()){
+                return null;
+            }else{
+                return datas.get(0);
+            }
         }
     }
 
@@ -66,9 +73,9 @@ public class ManyOrderBillDao {
         }
     }
     
-    public long count(Long userId){
+    public long count(Long memberId){
         ManyOrderBillExample example = new ManyOrderBillExample();
-        example.createCriteria().andUserIdEqualTo(userId);
+        example.createCriteria().andMemberIdEqualTo(memberId);
         return mapper.countByExample(example);
     }
     

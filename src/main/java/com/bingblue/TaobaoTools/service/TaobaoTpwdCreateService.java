@@ -5,6 +5,12 @@
  */
 package com.bingblue.TaobaoTools.service;
 
+import com.bingblue.TaobaoTools.dao.TaobaoWordDao;
+import com.bingblue.TaobaoTools.pojo.TaobaoWord;
+import com.bingblue.TaobaoTools.pojo.TaobaoWordType;
+import java.util.Calendar;
+import java.util.Date;
+import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
@@ -15,18 +21,24 @@ import org.springframework.stereotype.Service;
  */
 @Service()
 public class TaobaoTpwdCreateService {
-
     private Logger logger = Logger.getLogger(TaobaoTpwdCreateService.class);
 //    private final TaobaoClient client = new DefaultTaobaoClient(url, appkey, secret);
-
-    public String create(String ext, String logoUrl, String url, String text, Long userId) {
-        logger.info("ext ====> " + ext);
-        logger.info("logoUrl ====> " + logoUrl);
-        logger.info("url ====> " + url);
-        logger.info("text ====> " + text);
-        logger.info("userId ====> " + userId);
-        String result = "￥TestAADPOKFzTest￥";
-
+    
+    @Resource
+    private TaobaoWordDao taobaoWordDao;
+    
+    public TaobaoWord create(TaobaoWord taobaoWord) {
+        logger.info("ext ====> " + taobaoWord.getExt());
+        logger.info("logoUrl ====> " + taobaoWord.getLogoUrl());
+        logger.info("url ====> " + taobaoWord.getUrl());
+        logger.info("text ====> " + taobaoWord.getText());
+        if(taobaoWord.getId() == null || taobaoWord.getId() == 0L){
+            taobaoWordDao.insert(taobaoWord);
+        }
+        //跟淘宝sdk生成中。
+        taobaoWord.setStatus(TaobaoWordType.CREATING.toString());
+        taobaoWordDao.update(taobaoWord);
+        
 //        WirelessShareTpwdCreateRequest req = new WirelessShareTpwdCreateRequest();
 //        GenPwdIsvParamDto obj1 = new GenPwdIsvParamDto();
 //        obj1.setExt("{\"xx\":\"xx\"}");
@@ -37,7 +49,17 @@ public class TaobaoTpwdCreateService {
 //        req.setTpwdParam(obj1);
 //        WirelessShareTpwdCreateResponse rsp = client.execute(req);
 //        System.out.println(rsp.getBody());
-        return result;
+        
+        //生成完毕后。
+        taobaoWord.setTpwd("￥TestAADPOKFzTest￥");
+        taobaoWord.setStatus(TaobaoWordType.OVER.toString());//成功
+        Calendar nowDate = Calendar.getInstance();
+        nowDate.setTime(new Date());
+        nowDate.add(Calendar.DATE, 30);
+        taobaoWord.setFailureDate(nowDate.getTime());//设置失效时间
+        taobaoWordDao.update(taobaoWord);
+        
+        return taobaoWord;
     }
 
 }

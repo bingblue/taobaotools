@@ -13,5 +13,23 @@
     </head>
     <body>
         <h1>此页面是卡首屏功能主页。</h1>
+        ↓↓↓↓↓↓↓↓↓↓↓↓↓卡首屏↓↓↓↓↓↓↓↓↓↓↓↓↓
+        <form action="stuck/mobile.do" method="post" >
+            淘宝宝贝Id：<input type="text" name="taobaoProductId"><br/>
+            关键词：<input type="text" name="keywords"><br/>
+            淘口令分享标题：<input type="text" name="productTitle"><br/>
+            <input type="submit">
+        </form>
+        <br/><br/>
+        ↓↓↓↓↓↓↓↓↓↓↓↓↓卡同行↓↓↓↓↓↓↓↓↓↓↓↓↓
+        <form action="stuck/competitor.do" method="post" >
+            同行淘宝宝贝Id1：<input type="text" name="competitorProductId1"><br/>
+            同行淘宝宝贝Id2：<input type="text" name="competitorProductId2"><br/>
+            同行淘宝宝贝Id3：<input type="text" name="competitorProductId3"><br/>
+            淘宝宝贝Id：<input type="text" name="taobaoProductId"><br/>
+            关键词：<input type="text" name="keywords"><br/>
+            淘口令分享标题：<input type="text" name="productTitle"><br/>
+            <input type="submit">
+        </form>
     </body>
 </html>

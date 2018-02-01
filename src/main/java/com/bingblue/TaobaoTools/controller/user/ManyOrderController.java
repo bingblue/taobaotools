@@ -5,7 +5,6 @@
  */
 package com.bingblue.TaobaoTools.controller.user;
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.bingblue.TaobaoTools.controller.Tools;
 import com.bingblue.TaobaoTools.pojo.ManyOrderBill;
@@ -45,13 +44,12 @@ public class ManyOrderController {
      * 获取淘词补单列表
      *
      * @param page 第几页
-     * @param model model
      * @param httpSession 会话
      * @return 淘词补单Json数据
      */
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/list", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+    @ResponseBody
     public String orderList(@RequestParam(value = "page", defaultValue = "1") Integer page,
-            Model model,
             HttpSession httpSession) {
         Integer limitStart = 0;
         Integer quantity = 10;
@@ -59,13 +57,15 @@ public class ManyOrderController {
             limitStart = page * quantity - quantity;
         }
         List<ManyOrderBill> manyOrderAndDetailsList = manyOrderService.manyOrderAndDetailsList(0L, limitStart, quantity);
-        long count = manyOrderService.countManyOrderByUserId(0L);
+        long count = manyOrderService.countManyOrderByMemberId(0L);
         long sumPage = (long) Math.ceil(((double) count / (double) quantity));
+        
+        JSONObject manyOrderAndDetailsListJson = new JSONObject();
+        manyOrderAndDetailsListJson.put("manyOrderAndDetailsList", manyOrderAndDetailsList);
+        manyOrderAndDetailsListJson.put("manyOrderBillCount", count);
+        manyOrderAndDetailsListJson.put("manyOrderBillSumPage", sumPage);
 
-        model.addAttribute("manyOrderAndDetailsList", manyOrderAndDetailsList);
-        model.addAttribute("manyOrderBillCount", count);
-        model.addAttribute("manyOrderBillSumPage", sumPage);
-        return "/user/manyOrderBillList";
+        return Tools.success(manyOrderAndDetailsListJson).toString();
     }
 
     /**
@@ -146,17 +146,16 @@ public class ManyOrderController {
      * @param orderId 淘词补单Id
      * @return 返回淘词补单Json
      */
-    @RequestMapping(value = "/get", method = RequestMethod.GET)
+    @RequestMapping(value = "/get", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+    @ResponseBody
     public String getManyOrderBill(@RequestParam(value = "orderId", defaultValue = "0", required = true) Long orderId,
-            Model model) {
+            HttpSession session) {
 
-        ManyOrderBill manyOrderBill = manyOrderService.selectManyOrderAndDetails(orderId);
-        if (manyOrderBill == null) {
-            return "/user/manyOrderBillList";
-        }
-        model.addAttribute("manyOrderBill", manyOrderBill);
+        ManyOrderBill manyOrderBill = manyOrderService.selectManyOrderAndDetails(orderId, 0L);
+        JSONObject manyOrderBillJson = new JSONObject();
+        manyOrderBillJson.put("manyOrderBill", manyOrderBill);
+        return Tools.success(manyOrderBillJson).toString();
 
-        return "/user/manyOrderBillGet";
     }
 
     @RequestMapping(value = "/share", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
@@ -165,7 +164,7 @@ public class ManyOrderController {
         if (Tools.checkUserAgent(userAgent) == Tools.UserAgent.WEIXIN) {
             return "/user/showBrowserOpen";
         } else {
-            String url = manyOrderService.share(orderId);
+            String url = manyOrderService.generateStuckFirstScreenUrl(orderId);
             if (url == null) {
                 return "/user/manyOrderBillShareDone";//没有可补单的链接了，任务完成。
             } else {

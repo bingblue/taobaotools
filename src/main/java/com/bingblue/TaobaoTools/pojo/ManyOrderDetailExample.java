@@ -633,6 +633,66 @@ public class ManyOrderDetailExample {
             addCriterion("product_url not between", value1, value2, "productUrl");
             return (Criteria) this;
         }
+
+        public Criteria andTaobaoWordIdIsNull() {
+            addCriterion("taobao_word_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaobaoWordIdIsNotNull() {
+            addCriterion("taobao_word_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaobaoWordIdEqualTo(Long value) {
+            addCriterion("taobao_word_id =", value, "taobaoWordId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaobaoWordIdNotEqualTo(Long value) {
+            addCriterion("taobao_word_id <>", value, "taobaoWordId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaobaoWordIdGreaterThan(Long value) {
+            addCriterion("taobao_word_id >", value, "taobaoWordId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaobaoWordIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("taobao_word_id >=", value, "taobaoWordId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaobaoWordIdLessThan(Long value) {
+            addCriterion("taobao_word_id <", value, "taobaoWordId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaobaoWordIdLessThanOrEqualTo(Long value) {
+            addCriterion("taobao_word_id <=", value, "taobaoWordId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaobaoWordIdIn(List<Long> values) {
+            addCriterion("taobao_word_id in", values, "taobaoWordId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaobaoWordIdNotIn(List<Long> values) {
+            addCriterion("taobao_word_id not in", values, "taobaoWordId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaobaoWordIdBetween(Long value1, Long value2) {
+            addCriterion("taobao_word_id between", value1, value2, "taobaoWordId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaobaoWordIdNotBetween(Long value1, Long value2) {
+            addCriterion("taobao_word_id not between", value1, value2, "taobaoWordId");
+            return (Criteria) this;
+        }
     }
 
     /**

@@ -7,6 +7,8 @@ package com.bingblue.TaobaoTools.controller.api;
 
 import com.alibaba.fastjson.JSONObject;
 import com.bingblue.TaobaoTools.controller.Tools;
+import com.bingblue.TaobaoTools.pojo.TaobaoWord;
+import com.bingblue.TaobaoTools.pojo.TaobaoWordType;
 import com.bingblue.TaobaoTools.service.TaobaoTpwdCreateService;
 import javax.annotation.Resource;
 import org.apache.log4j.Logger;
@@ -44,16 +46,21 @@ public class TaobaoTpwdCreateController {
         if(title == null || "".equals(title.trim())){
             return Tools.error("淘口令分享标题不能为空。").toString();
         }
-        logger.info("url ===> " + url);
-        String tpwd = taobaoTpwdCreateService.create("", logoUrl, url, title, 0L);
-        logger.info("tpwd ===> " + tpwd);
+        TaobaoWord taobaoWord = new TaobaoWord();
+        taobaoWord.setMemberId(0L);
+        taobaoWord.setLogoUrl(logoUrl);
+        taobaoWord.setUrl(url);
+        taobaoWord.setStatus(TaobaoWordType.STAY_CREATE.toString());
+        taobaoWord.setText(title);
+        
+        taobaoWord = taobaoTpwdCreateService.create(taobaoWord);
 
         JSONObject result;
-        if (tpwd == null) {//失败
+        if (taobaoWord == null) {//失败
             result = Tools.error("生成淘口令失败。");
         } else {
             JSONObject object = new JSONObject();
-            object.put("tpwd", tpwd);
+            object.put("tpwd", taobaoWord.getTpwd());
             object.put("url", url);
             result = Tools.success(object);
         }

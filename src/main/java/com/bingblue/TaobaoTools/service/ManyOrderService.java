@@ -79,8 +79,8 @@ public class ManyOrderService {
      * @param orderId
      * @return 
      */
-    public ManyOrderBill selectManyOrderAndDetails(Long orderId){
-        return manyOrderBillDao.selectOneById(orderId, true);
+    public ManyOrderBill selectManyOrderAndDetails(Long orderId, Long memberId){
+        return manyOrderBillDao.selectOneById(orderId, memberId, true);
     }
     
     /**
@@ -94,7 +94,12 @@ public class ManyOrderService {
         return manyOrderBillDao.selectByMemberId(memberId, true, page, quantity);
     }
     
-    public String share(Long orderId){
+    /**
+     * 根据淘词补单单中的URL生成卡首屏链接。
+     * @param orderId 淘词补单Id
+     * @return url链接
+     */
+    public String generateStuckFirstScreenUrl(Long orderId){
         String url = null;
         ManyOrderDetail manyOrderDetail = manyOrderDetailDao.randomByHeadId(orderId);
         if(manyOrderDetail != null){
@@ -116,8 +121,8 @@ public class ManyOrderService {
         return url;
     }
     
-    public long countManyOrderByUserId(Long userId){
-        return manyOrderBillDao.count(userId);
+    public long countManyOrderByMemberId(Long memberId){
+        return manyOrderBillDao.count(memberId);
     }
     
 }
