@@ -3,6 +3,7 @@ $(function () {
   $.getQueryString = function(name, url) {
     var url = url ? url.split('?')[1] : window.location.search.substr(1)
     var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)')
+    if(!url) return null
     var r = url.match(reg)
     if (r != null) {
       return decodeURI(r[2])
@@ -54,4 +55,8 @@ $(function () {
       }
     })
   }
+  $('.menu li,.submenu li,.manage,.recharge span,.video').click(function(){
+    $.tip('暂未开通，请稍后')
+    return false
+  })
 })

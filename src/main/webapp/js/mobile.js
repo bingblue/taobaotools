@@ -1,7 +1,11 @@
 'use strict'
 $(function () {
+  var instance = $('form').parsley()
   /* 卡首屏手机端 */
   $(".save").click(function(){
+    if(!instance.validate()){
+      return false
+    }
     var option = {
       url: config.api.mobile,
       data: {
@@ -18,10 +22,6 @@ $(function () {
       }
       $.bomb(reuslt)
     })
-  })
-  $('.menu li,.submenu li,.manage,.recharge span,.video').click(function(){
-    $.tip('暂未开通，请稍后')
-    return false
   })
   
 })

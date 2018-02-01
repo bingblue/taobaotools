@@ -221,20 +221,27 @@ header .reg a {
 .content .tool .submenu li:hover a {
   color: #fff;
 }
-.content form input {
-  width: 700px;
-  height: 40px;
+.content form .row {
+  width: 720px;
+  height: auto;
+  margin: 30px auto 0;
+  display: block;
+  position: relative;
+}
+.content .row input {
+  width: 698px;
+  height: 38px;
   border:1px solid #d2d2d2;
   border-radius: 5px;
-  margin: 30px auto 0;
   display: block;
   padding: 0 10px;
   color: #505050;
 }
-.content form span {
+.content form span,
+.content .parsley-errors-list li {
   width: 700px;
   height: auto;
-  margin: 5px auto 0;
+  margin: 5px auto 0px;
   display: block;
   padding: 0 10px;
   color: #de1f12;
@@ -381,4 +388,8 @@ footer .service span.phone {
   font-size: 27px;
   font-weight: 600;
   color: #ffbb32;
+}
+/* 验证错误样式 */
+.parsley-error {
+  border-color: #de1f12 !important;
 }
