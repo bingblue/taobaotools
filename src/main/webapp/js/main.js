@@ -56,7 +56,8 @@ $(function () {
     })
   }
   $('.menu li,.submenu li,.manage,.recharge span,.video').click(function(){
-    $.tip('暂未开通，请稍后')
+    if($(this).find('a').attr('href') != '#') return
+    $.tip('非一期项目，暂未开通，请稍后')
     return false
   })
 })
