@@ -60,4 +60,18 @@ $(function () {
     $.tip('非一期项目，暂未开通，请稍后')
     return false
   })
+  /* 增加输入框 */
+  $.add = function(option) {
+    $('.jq-add').click(function(){
+      var item = '<div class="add">' +
+                    '<div class="add-input">'+
+                      '<input type="text" name="keywords" placeholder="'+ option.placeholder1 +'" required>' +
+                    '</div>' +
+                    '<div class="add-input">' +
+                      '<input type="text" name="limitClickQuantity" placeholder="'+ option.placeholder2 +'" required>' +
+                    '</div>' +
+                  '</div>'
+      $('.jq-add-wrap').append($(item))
+    })
+  }
 })

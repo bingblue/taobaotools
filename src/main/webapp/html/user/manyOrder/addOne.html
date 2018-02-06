@@ -43,7 +43,8 @@
   <div class="wrap banner">
     <a href="#"><img src="/img/banner.png"></a>
   </div>
-  <div class="wrap content">
+  <div class="wrap">
+    <div class="content">
     <section class="menu">
       <ul>
         <li class="hot">
@@ -120,11 +121,10 @@
         </li>
       </ul>
     </section>
-
+    
     <section class="tool">
       <h1>
-        至尊卡首屏
-        <small>升级啦!宝贝在搜索页面随机展示！</small>
+        淘词补单
       </h1>
       <hr>
       <ul class="submenu">
@@ -135,17 +135,21 @@
       <hr>
       <form action="#" method="POST" data-parsley-trigger="focusout">
         <div class="row">
-          <input type="text" name="keyword" maxlength="255" placeholder="请输入搜索关键字" required>
-        </div>
-        <div class="row">
           <input type="url" name="link" maxlength="255" placeholder="请输入宝贝链接" required value2="https://detail.tmall.com/item.htm?id=19586825190&spm=a223v.7835278.t0.1.180210fbaylpLt&pvid=4f7ceb96-4bec-4c39-845e-a9f688499857&scm=1007.12144.81309.9011_8949">
         </div>
-        <div class="add">
-          <input type="text" name="link" placeholder="请输入宝贝链接2">
-          <a href="javascript:;">+</a>
+        <div class="jq-add-wrap">
+          <div class="add">
+            <div class="add-input">
+              <input type="text" name="keywords" placeholder="请输入关键词" required>
+            </div>
+            <div class="add-input">
+              <input type="text" name="limitClickQuantity" placeholder="请输入点击量上限" required>
+            </div>
+            <a class="jq-add" href="javascript:;">+</a>
+          </div>
         </div>
         <div class="row">
-          <input type="text" name="title" maxlength="255" placeholder="淘口令分享标题" required>
+          <input type="text" name="remark" maxlength="255" placeholder="备注">
         </div>
         <div class="submit">
           <a class="save" href="javascript:;">立即提交</a>
@@ -159,6 +163,7 @@
       </div>
       <a class="video" href="#">视频教程</a>
     </section>
+    </div>
   </div>
   <footer>
     <div class="wrap">

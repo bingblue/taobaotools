@@ -1,7 +1,11 @@
 'use strict'
 $(function () {
   var instance = $('form').parsley()
-  /* 卡首屏手机端 */
+  $.add({
+    placeholder1 : '请输入宝贝链接',
+    placeholder2 : '请输入点击量上限'
+  })
+  /* 淘词补单多个关键词 */
   $(".save").click(function(){
     if(!instance.validate()){
       return false
@@ -9,18 +13,17 @@ $(function () {
     var option = {
       url: config.api.addMore,
       data: {
-        taobaoProductId: $.getQueryString('id', $('input[name=link]').val()),	// 淘宝商品Id
-        keywords: $('input[name=keyword]').val(),                             // 搜索的关键字
-        productTitle: $('input[name=title]').val(),                           // 淘口令分享标题
-        logoUrl: ''                                                           // 淘口令分享图片地址       
+        remark: $('input[name=remark]').val()                  // 备注
       }
     }
+    $('.add').each(function(i){
+      var productUrl = $('.add').eq(i).find('input[name=keywords]').val()
+      var limitClickQuantity = $('.add').eq(i).find('input[name=limitClickQuantity]').val()
+      option.data['manyOrderDetails['+ i +'].productUrl'] = productUrl
+      option.data['manyOrderDetails['+ i +'].limitClickQuantity'] = limitClickQuantity
+    })
     $.muAjax(option, function(data){
-      var reuslt = {
-        '淘口令': data.tpwd,
-        '卡首屏Url': data.url
-      }
-      $.bomb(reuslt)
+      $.tip('请到淘词补单列表查看')
     })
   })
   
