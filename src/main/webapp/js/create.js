@@ -1,7 +1,7 @@
 'use strict'
 $(function () {
   var instance = $('form').parsley()
-  /* 卡首屏手机端 */
+  /* 任意链接淘口令 */
   $(".save").click(function(){
     if(!instance.validate()){
       return false

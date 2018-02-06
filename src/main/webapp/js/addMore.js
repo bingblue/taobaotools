@@ -5,7 +5,7 @@ $(function () {
     placeholder1 : '请输入宝贝链接',
     placeholder2 : '请输入点击量上限'
   })
-  /* 淘词补单多个关键词 */
+  /* 淘词补单多个链接 */
   $(".save").click(function(){
     if(!instance.validate()){
       return false
