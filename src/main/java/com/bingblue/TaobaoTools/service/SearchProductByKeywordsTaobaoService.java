@@ -16,7 +16,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
@@ -45,7 +44,9 @@ public class SearchProductByKeywordsTaobaoService {
     @Resource
     private TaobaoProductService taobaoProductService;
 
-    private final LocalCookieStore cookieStore = new LocalCookieStore(new HashMap());
+    @Resource(name = "taobaoProductSpiderLocalCookieStore")
+    private LocalCookieStore cookieStore;
+    
     private final OkHttpClient httpClient = new OkHttpClient.Builder()
             .retryOnConnectionFailure(true)
             .connectTimeout(12, TimeUnit.SECONDS)
