@@ -25,8 +25,9 @@ $(function () {
   $.bomb = function(data) {
     var el = '<div class="bomb-mask">'
     for(var key in data){
-      el += '<span>'+key+':</span><input type="text" value="'+ data[key] +'">'
+      el +=   '<span>'+key+':</span><input type="text" value="'+ data[key] +'">'
     }
+    el +=     '<span>二维码:</span><div id="ercode"></div>'
     el +=     '<a class="close" href="javascript:;">确定</a>' +
             '</div>'
     $(el).appendTo('body')
