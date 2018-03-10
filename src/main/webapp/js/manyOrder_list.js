@@ -36,7 +36,7 @@ $(function () {
                     '<td>'+ result.remaining +'</td>'+
                     '<td>'+ i.remark +'</td>'+
                     '<td>'+ $.muNumToLocalDate(i.createDate) +'</td>'+
-                    '<td><a href="/html/user/manyOrder/get.html?orderId=' + i.id +'">详情</a></td>'+
+                    '<td><a href="/TaobaoTools/html/user/manyOrder/get.html?orderId=' + i.id +'">详情</a></td>'+
                   '</tr>'
       }
       $('tbody').html(html)

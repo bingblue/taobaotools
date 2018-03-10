@@ -23,7 +23,7 @@ $(function () {
                     '<td>'+ $.muChineseStatus(i.status) +'</td>'+
                     '<td>'+ $.muChineseTF(i.competitor) +'</td>'+
                     '<td>'+ $.muNumToLocalDate(i.createDate) +'</td>'+
-                    '<td><a href="/html/user/stuck/get.html?id=' + i.id +'">查看</a></td>'+
+                    '<td><a href="/TaobaoTools/html/user/stuck/get.html?id=' + i.id +'">查看</a></td>'+
                   '</tr>'
       }
       $('tbody').html(html)
