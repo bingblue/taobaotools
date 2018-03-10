@@ -11,18 +11,32 @@ $(function () {
       endDate: today            // 结束日期
     }
   }
+  function getNum(arr) {
+    var data = {
+      clickQuantityAll: 0,
+      limitClickQuantityAll: 0,
+      remaining: 0
+    }
+    for(let i of arr){
+      data.clickQuantityAll += i.clickQuantity
+      data.limitClickQuantityAll += i.limitClickQuantity
+    }
+    data.remaining = data.limitClickQuantityAll - data.clickQuantityAll
+    return data
+  }
   function setData(data) {
     $.muAjax(option, function(data){
       var html = ''
       for(let i of data.manyOrderAndDetailsList){
+        var result = getNum(i.manyOrderDetails)
         html += '<tr>'+
-                    '<td>'+ i.manyOrderDetails.keywords +'</td>'+
-                    '<td><a target="_blank" href="'+ i.productUrl +'">查看商品</a></td>'+
-                    '<td>'+ i.manyOrderDetails.clickCount +'</td>'+
-                    '<td>'+ i.manyOrderDetails.limitClickQuantity +'</td>'+
+                    '<td><a target="_blank" href="'+ i.shortLink +'">查看商品</a></td>'+
+                    '<td>'+ result.clickQuantityAll +'</td>'+
+                    '<td>'+ result.limitClickQuantityAll +'</td>'+
+                    '<td>'+ result.remaining +'</td>'+
                     '<td>'+ i.remark +'</td>'+
                     '<td>'+ $.muNumToLocalDate(i.createDate) +'</td>'+
-                    '<td><a href="/html/user/manyOrder/get.html?id=' + i.id +'">查看</a></td>'+
+                    '<td><a href="/html/user/manyOrder/get.html?orderId=' + i.id +'">详情</a></td>'+
                   '</tr>'
       }
       $('tbody').html(html)

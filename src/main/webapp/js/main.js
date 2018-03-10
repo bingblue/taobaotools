@@ -20,7 +20,7 @@ $(function () {
     $el.appendTo('body')
     setTimeout(function(){
       $('.bombsettime-wp').remove()
-    },1800)
+    },1000)
   }
   $.bomb = function(data) {
     var el = '<div class="bomb-mask">'

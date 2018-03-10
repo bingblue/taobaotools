@@ -4,22 +4,25 @@ $(function () {
     type: 'GET',
     url: config.api.manyOrderGet,
     data: {
-      id: $.getQueryString('id')
+      orderId: $.getQueryString('orderId')
     }
   }
   $.muAjax(option, function(data){
-    var i = data.manyOrderBill
-    $('.keywords').text(i.manyOrderDetails.keywords)
-    $('.productUrl').text(i.productUrl)
-    $('.clickCount').text(i.manyOrderDetails.clickCount)
-    $('.clickQuantity').text(i.manyOrderDetails.clickQuantity)
-    $('.limitClickQuantity').text(i.manyOrderDetails.limitClickQuantity)
-    $('.remark').text($.muChineseTF(i.remark))
-    $('.createDate').text($.muNumToLocalDate(i.createDate))
+    var html = ''
+    for(var i of data.manyOrderBill.manyOrderDetails){
+      html += '<tr>'+
+                '<td>'+ i.keywords +'</td>'+
+                '<td>'+ i.limitClickQuantity +'</td>'+
+                '<td>'+ i.clickQuantity +'</td>'+
+                '<td>'+ (i.limitClickQuantity - i.clickQuantity) +'</td>'+
+                '<td><a href="'+ i.productUrl +'" target="_blank">查看宝贝</a></td>'
+    }
+    $('.table-content').html(html)
+    $('.shortLink').text(data.manyOrderBill.shortLink)
     $('.ercode').qrcode({
       width   : 100,
       height  : 100,
-      text    : i.productUrl
+      text    : data.manyOrderBill.shortLink
     })
   })
 })

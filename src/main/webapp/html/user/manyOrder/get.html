@@ -12,8 +12,8 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
 
   <!-- CSS 开始 -->
-  <link rel="stylesheet" href="/css/normalize.css">
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/TaobaoTools/css/normalize.css">
+  <link rel="stylesheet" href="/TaobaoTools/css/style.css">
 </head>
 <body>
   <!--[if lte IE 9]>
@@ -21,7 +21,7 @@
   <![endif]-->
   <header>
     <div class="wrap">
-      <a href="#"><img src="/img/logo.png" alt="大署教育"></a>
+      <a href="#"><img src="/TaobaoTools/img/logo.png" alt="大署教育"></a>
       <ul>
         <li><a href="#">首页</a></li>
         <li><a href="#">关于我们</a></li>
@@ -34,88 +34,88 @@
         <li class="active"><a href="#">工具箱</a></li>
       </ul>
       <div class="reg">
-        <img src="/img/icon_login.png">
+        <img src="/TaobaoTools/img/icon_login.png">
         <a href="#">登录</a>
         <a href="#">注册</a>
       </div>
     </div>
   </header>
   <div class="wrap banner">
-    <a href="#"><img src="/img/banner.png"></a>
+    <a href="#"><img src="/TaobaoTools/img/banner.png"></a>
   </div>
   <div class="wrap">
     <div class="content">
     <section class="menu">
       <ul>
         <li class="hot">
-          <a href="/html/user/stuck/mobile.html">
-            <img src="/img/icon_nav01.png">
+          <a href="/TaobaoTools/html/user/stuck/mobile.html">
+            <img src="/TaobaoTools/img/icon_nav01.png">
             <span>至尊卡首屏</span>
           </a>
         </li>
         <li class="">
           <a href="#">
-            <img src="/img/icon_nav02.png">
+            <img src="/TaobaoTools/img/icon_nav02.png">
             <span>类目卡首屏</span>
           </a>
         </li>
         <li class="hot">
           <a href="#">
-            <img src="/img/icon_nav03.png">
+            <img src="/TaobaoTools/img/icon_nav03.png">
             <span>口令补单</span>
           </a>
         </li>
         <li class="active">
-          <a href="/html/user/manyOrder/addOne.html">
-            <img src="/img/icon_nav04.png">
+          <a href="/TaobaoTools/html/user/manyOrder/addOne.html">
+            <img src="/TaobaoTools/img/icon_nav04.png">
             <span>淘词补单</span>
           </a>
         </li>
         <li class="">
           <a href="#">
-            <img src="/img/icon_nav05.png">
+            <img src="/TaobaoTools/img/icon_nav05.png">
             <span>微信补单</span>
           </a>
         </li>
         <li class="hot">
           <a href="#">
-            <img src="/img/icon_nav06.png">
+            <img src="/TaobaoTools/img/icon_nav06.png">
             <span>手淘首页</span>
           </a>
         </li>
         <li class="">
           <a href="#">
-            <img src="/img/icon_nav07.png">
+            <img src="/TaobaoTools/img/icon_nav07.png">
             <span>直通车卡首屏</span>
           </a>
         </li>
         <li class="">
           <a href="#">
-            <img src="/img/icon_nav08.png">
+            <img src="/TaobaoTools/img/icon_nav08.png">
             <span>补手机端流量</span>
           </a>
         </li>
         <li class="">
-          <a href="/html/user/book.html">
-            <img src="/img/icon_nav09.png">
+          <a href="/TaobaoTools/html/user/book.html">
+            <img src="/TaobaoTools/img/icon_nav09.png">
             <span>相关热词查询</span>
           </a>
         </li>
         <li class="">
           <a href="#">
-            <img src="/img/icon_nav10.png">
+            <img src="/TaobaoTools/img/icon_nav10.png">
             <span>抓取评价晒图</span>
           </a>
         </li>
         <li class="">
           <a href="#">
-            <img src="/img/icon_nav11.png">
+            <img src="/TaobaoTools/img/icon_nav11.png">
             <span>领券补单</span>
           </a>
         </li>
         <li class="hot">
           <a href="#">
-            <img src="/img/icon_nav12.png">
+            <img src="/TaobaoTools/img/icon_nav12.png">
             <span>短链接</span>
           </a>
         </li>
@@ -126,44 +126,40 @@
       <h1>
         淘词补单详情
       </h1>
-      <table class="table-list table-get" cellspacing="0">
+      <table class="table-list" cellspacing="0">
+        <thead>
+          <tr>
+            <th width="20%">关键词</th>
+            <th width="20%">限制点击量</th>
+            <th width="20%">已点击量</th>
+            <th width="20%">剩余点击量</th>
+            <th width="20%">宝贝链接</th>
+          </tr>
+        </thead>
+        <tbody class="table-content">
+          <tr>
+            <td>外套</td>
+            <td>1</td>
+            <td>0</td>
+            <td>1</td>
+            <td><a href="#" target="_blank">查看宝贝</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table-list table-get table-mg" cellspacing="0">
         <tbody>
+          <!-- <tr>
+            <td class="td-name">分享链接:</td>
+            <td class="shortLink"></td>
+          </tr> -->
           <tr>
-            <td class="td-name">关键词:</td>
-            <td class="keywords"></td>
-          </tr>
-          <tr>
-            <td class="td-name">商品连接:</td>
-            <td class="productUrl"></td>
-          </tr>
-          <tr>
-            <td class="td-name">累计点击量:</td>
-            <td class="clickCount"></td>
-          </tr>
-          <tr>
-            <td class="td-name">已点击量:</td>
-            <td class="clickQuantity"></td>
-          </tr>
-          <tr>
-            <td class="td-name">限制点击量:</td>
-            <td class="limitClickQuantity"></td>
-          </tr>
-          <tr>
-            <td class="td-name">备注:</td>
-            <td class="remark"></td>
-          </tr>
-          <tr>
-            <td class="td-name">创建日期:</td>
-            <td class="createDate"></td>
-          </tr>
-          <tr>
-            <td class="td-name">二维码:</td>
+            <td class="td-name">分享链接二维码:</td>
             <td class="ercode"></td>
           </tr>
         </tbody>
       </table>
       <div class="back-wrap">
-        <a class="back" href="/html/user/manyOrder/list.html">返回淘口令列表</a>
+        <a class="back" href="/TaobaoTools/html/user/manyOrder/list.html">返回淘口令列表</a>
       </div>
     </section>
     </div>
@@ -205,11 +201,11 @@
 
   <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js" crossorigin="anonymous"></script>
   <script>
-    window.jQuery || document.write('<script src="/js/vendor/jquery-3.2.1.min.js"><\/script>')
+    window.jQuery || document.write('<script src="/TaobaoTools/js/vendor/jquery-3.2.1.min.js"><\/script>')
   </script>
-  <script src="/js/vendor/jquery.qrcode.min.js"></script>
-  <script src="/js/config.js"></script>
-  <script src="/js/main.js"></script>
-  <script src="/js/manyOrder_get.js"></script>
+  <script src="/TaobaoTools/js/vendor/jquery.qrcode.min.js"></script>
+  <script src="/TaobaoTools/js/config.js"></script>
+  <script src="/TaobaoTools/js/main.js"></script>
+  <script src="/TaobaoTools/js/manyOrder_get.js"></script>
 </body>
 </html>

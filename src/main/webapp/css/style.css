@@ -524,3 +524,6 @@ footer .service span.phone {
 .pagination li.active a{
   color: #ffbb32;
 }
+.table-mg {
+  margin-top: 20px;
+}
