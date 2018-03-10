@@ -17,8 +17,8 @@ $(function () {
     }
     $.muAjax(option, function(data){
       var reuslt = {
-        '淘口令': data.tpwd,
-        '卡首屏Url': data.url
+        '淘口令': data.tpwd
+        // '卡首屏Url': data.url
       }
       $.bomb(reuslt)
       $('#ercode').qrcode({

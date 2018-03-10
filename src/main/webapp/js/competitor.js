@@ -20,10 +20,15 @@ $(function () {
     }
     $.muAjax(option, function(data){
       var reuslt = {
-        '淘口令': data.tpwd,
-        '卡同行Url': data.url
+        '淘口令': data.tpwd
+        // '卡同行Url': data.url
       }
       $.bomb(reuslt)
+      $('#ercode').qrcode({
+        width   : 100,
+        height  : 100,
+        text    : data.url
+      })
     })
   })
   

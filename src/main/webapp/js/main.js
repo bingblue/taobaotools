@@ -11,7 +11,8 @@ $(function () {
       return null
     }
   }
-  $.tip = function(title) {
+  $.tip = function(title, time) {
+    time = time ? time : 1000
     var $el = $('<div class="bombsettime-wp">' +
                     '<div class="bombsettime">' +
                       '<p class="title">' + title + '</p>' +
@@ -20,7 +21,7 @@ $(function () {
     $el.appendTo('body')
     setTimeout(function(){
       $('.bombsettime-wp').remove()
-    },1000)
+    },time)
   }
   $.bomb = function(data) {
     var el = '<div class="bomb-mask">'
