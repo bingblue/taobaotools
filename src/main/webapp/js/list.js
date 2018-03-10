@@ -31,7 +31,7 @@ $(function () {
     })
   }
   setData()
-  $(document).on('click', 'a', function(){
+  $(document).on('click', '.pagination a', function(){
     nowPage = $(this).data('page')
     option.data.page = nowPage
     setData()
