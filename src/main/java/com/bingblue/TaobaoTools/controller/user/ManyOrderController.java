@@ -12,10 +12,10 @@ import com.bingblue.TaobaoTools.pojo.ManyOrderDetail;
 import com.bingblue.TaobaoTools.service.ManyOrderService;
 import java.util.List;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,21 +45,28 @@ public class ManyOrderController {
      *
      * @param page 第几页
      * @param httpSession 会话
+     * @param request request
      * @return 淘词补单Json数据
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
     @ResponseBody
     public String orderList(@RequestParam(value = "page", defaultValue = "1") Integer page,
-            HttpSession httpSession) {
+            HttpSession httpSession, HttpServletRequest request) {
         Integer limitStart = 0;
         Integer quantity = 10;
         if (page >= 2) {
             limitStart = page * quantity - quantity;
         }
         List<ManyOrderBill> manyOrderAndDetailsList = manyOrderService.manyOrderAndDetailsList(0L, limitStart, quantity);
+
+        //短链接生成
+        for (ManyOrderBill bill : manyOrderAndDetailsList) {
+            bill.setShortLink(createShortUrl(request, bill.getId()));
+        }
+
         long count = manyOrderService.countManyOrderByMemberId(0L);
         long sumPage = (long) Math.ceil(((double) count / (double) quantity));
-        
+
         JSONObject manyOrderAndDetailsListJson = new JSONObject();
         manyOrderAndDetailsListJson.put("manyOrderAndDetailsList", manyOrderAndDetailsList);
         manyOrderAndDetailsListJson.put("manyOrderBillCount", count);
@@ -119,16 +126,16 @@ public class ManyOrderController {
         if (manyOrderBill == null) {//失败
             return Tools.error("参数错误。").toString();
         }
-        
+
         for (ManyOrderDetail detail : manyOrderBill.getManyOrderDetails()) {
-            if (detail.getProductUrl()== null || detail.getProductUrl().trim().isEmpty()) {
+            if (detail.getProductUrl() == null || detail.getProductUrl().trim().isEmpty()) {
                 return Tools.error("淘词补单商品链接不能为空。").toString();
             }
             if (detail.getLimitClickQuantity() == null || detail.getLimitClickQuantity() == 0) {
                 detail.setLimitClickQuantity(1);
             }
         }
-        
+
         JSONObject result;
         manyOrderBill.setUserId(0L);
         manyOrderBill.setMemberId(0L);
@@ -149,9 +156,9 @@ public class ManyOrderController {
     @RequestMapping(value = "/get", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
     @ResponseBody
     public String getManyOrderBill(@RequestParam(value = "orderId", defaultValue = "0", required = true) Long orderId,
-            HttpSession session) {
-
+            HttpSession session, HttpServletRequest request) {
         ManyOrderBill manyOrderBill = manyOrderService.selectManyOrderAndDetails(orderId, 0L);
+        manyOrderBill.setShortLink(createShortUrl(request, orderId));
         JSONObject manyOrderBillJson = new JSONObject();
         manyOrderBillJson.put("manyOrderBill", manyOrderBill);
         return Tools.success(manyOrderBillJson).toString();
@@ -171,5 +178,10 @@ public class ManyOrderController {
                 return "redirect:" + url;
             }
         }
+    }
+
+    private String createShortUrl(HttpServletRequest request, Long billId) {
+        String root = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+        return root + "/user/manyOrder/share.do?orderId=" + billId;
     }
 }

@@ -6,6 +6,8 @@
 package com.bingblue.TaobaoTools.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -84,6 +86,23 @@ public class Tools {
         } else {
             return UserAgent.OTHER;
         }
+    }
+
+    public static Map<String, String> toMap(String url) {
+        Map<String, String> map = new HashMap<>();
+        if (url != null && url.contains("?")) {
+            url = url.substring(url.indexOf("?")+1);
+            String[] arrTemp = url.split("&");
+            for (String str : arrTemp) {
+                String[] qs = str.split("=");
+                map.put(qs[0], qs[1]);
+            }
+        }
+        return map;
+    }
+
+    public static String getQueryString(String url, String name) {
+        return toMap(url).get(name);
     }
 
     public enum UserAgent {

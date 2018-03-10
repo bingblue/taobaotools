@@ -63,9 +63,9 @@ public class ManyOrderService {
         orderBill.setCreateDate(new Date());
         manyOrderBillDao.insert(orderBill);
         for (ManyOrderDetail detail : details) {
-            if(null == detail.getKeywords() || detail.getKeywords().isEmpty()){
-                continue;
-            }
+//            if(null == detail.getKeywords() || detail.getKeywords().isEmpty()){
+//                continue;
+//            }
             detail.setHeadId(orderBill.getId());
             detail.setClickCount(0);
             detail.setClickQuantity(0);

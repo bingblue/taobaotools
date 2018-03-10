@@ -11,7 +11,12 @@ package com.bingblue.TaobaoTools.pojo;
  */
 public enum BillStatus {
     
-    STAY_CREATE("待生成"), CREATING("生成中"), OVER("已生成"), FAILURE("生成失败");
+    STAY_CREATE("待生成"), 
+    CREATING("生成中"), 
+    OVER("已生成"), 
+    FAILURE("失败"),
+    DISPOSE("处理中"),
+    DONE("完成");
     
     BillStatus(String type) {
         this.type = type;
