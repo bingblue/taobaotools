@@ -11,7 +11,7 @@ $(function () {
     var html = ''
     for(var i of data.manyOrderBill.manyOrderDetails){
       html += '<tr>'+
-                '<td>'+ i.keywords +'</td>'+
+                '<td>'+ (i.keywords?i.keywords:'/') +'</td>'+
                 '<td>'+ i.limitClickQuantity +'</td>'+
                 '<td>'+ i.clickQuantity +'</td>'+
                 '<td>'+ (i.limitClickQuantity - i.clickQuantity) +'</td>'+
