@@ -124,40 +124,51 @@
 
     <section class="tool">
       <h1>
-        至尊卡首屏
-        <small>升级啦!宝贝在搜索页面随机展示！</small>
+        卡首屏订单详情
       </h1>
-      <hr>
-      <ul class="submenu">
-        <li class="active"><a href="/html/user/stuck/mobile.html">卡首屏淘口令</a></li>
-        <li><a href="#">卡第二位淘口令</a></li>
-        <li><a href="/html/user/stuck/competitor.html">卡同行淘口令</a></li>
-        <li><a href="/html/api/taobao/tpwd/create.html">任意链接淘口令</a></li>
-        <li><a href="#">二维码卡首屏淘口令</a></li>
-      </ul>
-      <hr>
-      <form action="#" method="POST" data-parsley-trigger="focusout">
-        <div class="row">
-          <input type="text" name="keyword" maxlength="255" placeholder="请输入搜索关键字" required>
-          <!-- <span>卡屏关键字,字根组合不了的,无法卡在首屏（正常搜索卡条件也找不到）。</span> -->
-        </div>
-        <div class="row">
-          <input type="url" name="link" maxlength="255" placeholder="请输入宝贝链接" required value2="https://detail.tmall.com/item.htm?id=19586825190&spm=a223v.7835278.t0.1.180210fbaylpLt&pvid=4f7ceb96-4bec-4c39-845e-a9f688499857&scm=1007.12144.81309.9011_8949">
-        </div>
-        <div class="row">
-          <input type="text" name="title" maxlength="255" placeholder="淘口令分享标题" required>
-        </div>
-        <div class="submit">
-          <a class="save" href="javascript:;">立即提交</a>
-          <a class="manage" href="/html/user/stuck/list.html">管理淘口令</a>
-        </div>
-        <span class="note">（注：淘口令有效期30天左右,是淘宝官方限控的时间。）</span>
-      </form>
-      <div class="recharge">
-        需要：2个积分 <a href="javascript:;">充值</a>
-        温馨提示：卡首屏产品位置随机（搜索关键词要包含在标题内,就会出现在搜索结果中）
+      <table class="table-list table-get" cellspacing="0">
+        <tbody>
+          <tr>
+            <td class="td-name">商品ID:</td>
+            <td class="productId"></td>
+          </tr>
+          <tr>
+            <td class="td-name">关键词:</td>
+            <td class="keywords"></td>
+          </tr>
+          <tr>
+            <td class="td-name">分享标题:</td>
+            <td class="text"></td>
+          </tr>
+          <tr>
+            <td class="td-name">淘口令:</td>
+            <td class="tpwd"></td>
+          </tr>
+          <tr>
+            <td class="td-name">状态:</td>
+            <td class="status"></td>
+          </tr>
+          <tr>
+            <td class="td-name">是否卡同行:</td>
+            <td class="competitor"></td>
+          </tr>
+          <tr>
+            <td class="td-name">创建日期:</td>
+            <td class="createDate"></td>
+          </tr>
+          <tr>
+            <td class="td-name">URL:</td>
+            <td class="url"></td>
+          </tr>
+          <tr>
+            <td class="td-name">二维码:</td>
+            <td class="ercode"></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="back-wrap">
+        <a class="back" href="/html/user/stuck/list.html">返回淘口令列表</a>
       </div>
-      <a class="video" href="#">视频教程</a>
     </section>
     </div>
   </div>
@@ -200,11 +211,9 @@
   <script>
     window.jQuery || document.write('<script src="/js/vendor/jquery-3.2.1.min.js"><\/script>')
   </script>
-  <script src="https://cdn.bootcss.com/parsley.js/2.8.0/parsley.min.js"></script>
-  <script src="/js/vendor/parsley_zh_cn.js"></script>
   <script src="/js/vendor/jquery.qrcode.min.js"></script>
   <script src="/js/config.js"></script>
   <script src="/js/main.js"></script>
-  <script src="/js/mobile.js"></script>
+  <script src="/js/get.js"></script>
 </body>
 </html>

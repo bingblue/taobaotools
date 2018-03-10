@@ -36,8 +36,9 @@ $(function () {
     })
   }
   $.muAjax = function(option, cb) {
+    option.type = option.type ? option.type : 'POST'
     $.ajax({
-      type: 'POST',
+      type: option.type,
       url: option.url,
       async: true,
       dataType: 'json',
@@ -74,5 +75,67 @@ $(function () {
                   '</div>'
       $('.jq-add-wrap').append($(item))
     })
+  }
+  $.muChineseTF = function(isT) {
+    return isT ? '是' : '否'
+  }
+  $.muChineseStatus = function(status) {
+    switch (status) {
+      case 'OVER':
+        return '正常'
+        break;
+      case 'STAY_CREATE':
+        return '待生成'
+        break;
+      case 'CREATING':
+        return '生成中'
+        break;
+      case 'FAILURE':
+        return '生成失败'
+        break;
+      default:
+        return '正常'
+        break;
+    }
+  }
+  $.muNumToLocalDate = function(num) {
+    return new Date(num).toLocaleDateString().replace(/\//g,'-')
+  }
+  /*
+   * 分页方法
+   * @param {count} 总条数
+   * @param {page} 当前页
+   * @param {limit=10} 每页条数
+   */
+  $.getPageArr = function(count, page, limit) {
+    const pages = Math.ceil(count / limit)
+    let result = []
+    if (pages <= 3 || page <= 1) {
+      for(let i = 1;i <= pages && i<= 3;i++){
+        result[i-1] = i
+      }
+    } else if (page >= pages - 1) {
+      result = [pages-2, pages - 1, pages]
+    }else {
+      result = [page - 1, page, page + 1]
+    }
+    return result
+  }
+  /*
+   * 生成分页HTML
+   * @param {pageArr} 分页数组
+   * @param {page} 当前页
+   */
+  $.createPageHtml = function(count, page, limit) {
+    let pageArr = $.getPageArr(count, page, limit)
+    let pageHtml = `<ul class="pagination">
+        <li><a data-page="1" href="javascript:;">«</a></li>`
+    for (let item in pageArr) {
+      let active = pageArr[item] === page ? 'active' : ''
+      pageHtml += `<li class="${active}"><a data-page="${pageArr[item]}" href="javascript:;">${pageArr[item]}</a></li>`
+    }
+    pageHtml += `<li><a data-page="${Math.ceil(count / limit)}" href="javascript:;">»</a></li>
+      </ul>`
+    return pageHtml
   }
 })
