@@ -12,6 +12,7 @@ var config = {
     'get': url + '/user/stuck/get.do',
     'manyOrderList': url + '/user/manyOrder/list.do',
     'manyOrderGet': url + '/user/manyOrder/get.do',
-    'book': 'https://suggest.taobao.com/sug'
+    'book': 'https://suggest.taobao.com/sug',
+    'add': url + '/user/analyzeStore/add.do'
   }
 }
