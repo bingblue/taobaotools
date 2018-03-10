@@ -894,6 +894,76 @@ public class AnalyzeStoreDetailExample {
             addCriterion("store_name not between", value1, value2, "storeName");
             return (Criteria) this;
         }
+
+        public Criteria andSourceDataIsNull() {
+            addCriterion("source_data is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceDataIsNotNull() {
+            addCriterion("source_data is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceDataEqualTo(String value) {
+            addCriterion("source_data =", value, "sourceData");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceDataNotEqualTo(String value) {
+            addCriterion("source_data <>", value, "sourceData");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceDataGreaterThan(String value) {
+            addCriterion("source_data >", value, "sourceData");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceDataGreaterThanOrEqualTo(String value) {
+            addCriterion("source_data >=", value, "sourceData");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceDataLessThan(String value) {
+            addCriterion("source_data <", value, "sourceData");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceDataLessThanOrEqualTo(String value) {
+            addCriterion("source_data <=", value, "sourceData");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceDataLike(String value) {
+            addCriterion("source_data like", value, "sourceData");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceDataNotLike(String value) {
+            addCriterion("source_data not like", value, "sourceData");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceDataIn(List<String> values) {
+            addCriterion("source_data in", values, "sourceData");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceDataNotIn(List<String> values) {
+            addCriterion("source_data not in", values, "sourceData");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceDataBetween(String value1, String value2) {
+            addCriterion("source_data between", value1, value2, "sourceData");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceDataNotBetween(String value1, String value2) {
+            addCriterion("source_data not between", value1, value2, "sourceData");
+            return (Criteria) this;
+        }
     }
 
     /**

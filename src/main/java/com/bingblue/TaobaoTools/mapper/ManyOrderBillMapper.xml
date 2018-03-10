@@ -367,9 +367,9 @@
         <if test="orderByClause != null">
             order by ${orderByClause}
         </if>
-        <if test="page != null">
+        <if test="#{startRow} != null">
             limit #{startRow}
-            <if test="quantity != null">
+            <if test="pageSize != null">
                 , #{pageSize}
             </if>
         </if>
