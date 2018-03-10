@@ -17,7 +17,7 @@ $(function () {
       for(let i of data.manyOrderAndDetailsList){
         html += '<tr>'+
                     '<td>'+ i.manyOrderDetails.keywords +'</td>'+
-                    '<td><a href="'+ i.productUrl +'">查看商品</a></td>'+
+                    '<td><a target="_blank" href="'+ i.productUrl +'">查看商品</a></td>'+
                     '<td>'+ i.manyOrderDetails.clickCount +'</td>'+
                     '<td>'+ i.manyOrderDetails.limitClickQuantity +'</td>'+
                     '<td>'+ i.remark +'</td>'+

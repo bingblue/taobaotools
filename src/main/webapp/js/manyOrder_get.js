@@ -8,7 +8,7 @@ $(function () {
     }
   }
   $.muAjax(option, function(data){
-    var i = data.stuckFirstScreenBill
+    var i = data.manyOrderBill
     $('.keywords').text(i.manyOrderDetails.keywords)
     $('.productUrl').text(i.productUrl)
     $('.clickCount').text(i.manyOrderDetails.clickCount)

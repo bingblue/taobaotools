@@ -319,6 +319,18 @@ header .reg a {
   color: #fff;
   background: #ffbb32;
 }
+.content .book {
+  text-align: center;
+}
+.content .book a{
+  width: auto;
+  display: inline-block;
+  padding: 5px 10px;
+  border: 1px solid #eee;
+  color: #999;
+  margin-bottom: 5px;
+  margin-right: 5px;
+}
 .content form .note {
   margin-top: 5px;
 }
