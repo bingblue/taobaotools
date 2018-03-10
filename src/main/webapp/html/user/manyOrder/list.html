@@ -4,7 +4,7 @@
   <meta content="webkit" name="renderer" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta charset="UTF-8">
-  <title>卡首屏淘口令详情 - 大署教育</title>
+  <title>淘词补单列表 - 大署教育</title>
   <meta name="Keywords" content="">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -124,50 +124,50 @@
 
     <section class="tool">
       <h1>
-        卡首屏订单详情
+        淘词补单列表
       </h1>
-      <table class="table-list table-get" cellspacing="0">
+      <table class="table-list" cellspacing="0">
+        <thead>
+          <tr>
+            <th width="20%">关键词</th>
+            <th width="20%">商品连接</th>
+            <th width="20%">累计点击量</th>
+            <th width="10%">限制点击量</th>
+            <th width="10%">备注</th>
+            <th width="10%">创建日期</th>
+            <th width="10%">操作</th>
+          </tr>
+        </thead>
         <tbody>
+          <!-- <tr>
+            <td>洗发水</td>
+            <td><a href="https://chaoshi.detail.tmall.com/item.htm?spm=a230r.1.14.16.14a04bbfrkWfmy&id=559316982824&ns=1&abbucket=15">查看商品</a></td>
+            <td>3</td>
+            <td>5</td>
+            <td></td>
+            <td>2018-03-30</td>
+            <td><a href="#">查看</a></td>
+          </tr>  -->
           <tr>
-            <td class="td-name">商品ID:</td>
-            <td class="productId"></td>
-          </tr>
-          <tr>
-            <td class="td-name">关键词:</td>
-            <td class="keywords"></td>
-          </tr>
-          <tr>
-            <td class="td-name">分享标题:</td>
-            <td class="text"></td>
-          </tr>
-          <tr>
-            <td class="td-name">淘口令:</td>
-            <td class="tpwd"></td>
-          </tr>
-          <tr>
-            <td class="td-name">状态:</td>
-            <td class="status"></td>
-          </tr>
-          <tr>
-            <td class="td-name">是否卡同行:</td>
-            <td class="competitor"></td>
-          </tr>
-          <tr>
-            <td class="td-name">创建日期:</td>
-            <td class="createDate"></td>
-          </tr>
-          <tr>
-            <td class="td-name">URL:</td>
-            <td class="url"></td>
-          </tr>
-          <tr>
-            <td class="td-name">二维码:</td>
-            <td class="ercode"></td>
+            <td class="loading" colspan="8">加载中...</td>
           </tr>
         </tbody>
       </table>
-      <div class="back-wrap">
-        <a class="back" href="/html/user/stuck/list.html">返回淘口令列表</a>
+      <div class="page">
+        <!-- <ul class="pagination pagination-sm">
+            <li>
+              <a data-page="1" href="javascript:;">«</a>
+            </li>
+            <li class="active">
+              <a data-page="1" href="javascript:;">1</a>
+            </li>
+            <li class="">
+              <a data-page="2" href="javascript:;">2</a>
+            </li>
+            <li>
+              <a data-page="2" href="javascript:;">»</a>
+            </li>
+          </ul> -->
       </div>
     </section>
     </div>
@@ -211,9 +211,8 @@
   <script>
     window.jQuery || document.write('<script src="/js/vendor/jquery-3.2.1.min.js"><\/script>')
   </script>
-  <script src="/js/vendor/jquery.qrcode.min.js"></script>
   <script src="/js/config.js"></script>
   <script src="/js/main.js"></script>
-  <script src="/js/get.js"></script>
+  <script src="/js/manyOrder_list.js"></script>
 </body>
 </html>

@@ -9,6 +9,8 @@ var config = {
     'addOne': url + '/user/manyOrder/addOne.do',
     'addMore': url + '/user/manyOrder/addMore.do',
     'list': url + '/user/stuck/list.do',
-    'get': url + '/user/stuck/get.do'
+    'get': url + '/user/stuck/get.do',
+    'manyOrderList': url + '/user/manyOrder/list.do',
+    'manyOrderGet': url + '/user/manyOrder/get.do'
   }
 }
