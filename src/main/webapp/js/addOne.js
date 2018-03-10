@@ -24,7 +24,7 @@ $(function () {
       option.data['manyOrderDetails['+ i +'].limitClickQuantity'] = limitClickQuantity
     })
     $.muAjax(option, function(data){
-      $.tip('请到淘词补单列表查看')
+      $.tip('请到淘词补单列表查看',2000)
     })
   })
   
