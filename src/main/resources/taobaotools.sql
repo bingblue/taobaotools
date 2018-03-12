@@ -1,19 +1,59 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : Home
-Source Server Version : 50524
+Source Server         : 本地
+Source Server Version : 50528
 Source Host           : localhost:3306
 Source Database       : taobaotools
 
 Target Server Type    : MYSQL
-Target Server Version : 50524
+Target Server Version : 50528
 File Encoding         : 65001
 
-Date: 2018-03-10 09:51:41
+Date: 2018-03-12 19:51:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for t_analyzestorebill
+-- ----------------------------
+DROP TABLE IF EXISTS `t_analyzestorebill`;
+CREATE TABLE `t_analyzestorebill` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `happen_date` datetime DEFAULT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `catch_url` varchar(255) DEFAULT NULL,
+  `create_date` datetime DEFAULT NULL,
+  `remark` varchar(255) DEFAULT NULL,
+  `member_id` bigint(20) DEFAULT NULL,
+  `done_date` datetime DEFAULT NULL,
+  `catch_remark` varchar(500) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `shop_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for t_analyzestoredetail
+-- ----------------------------
+DROP TABLE IF EXISTS `t_analyzestoredetail`;
+CREATE TABLE `t_analyzestoredetail` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `analyze_store_bill_id` bigint(20) DEFAULT NULL,
+  `product_name` varchar(255) DEFAULT NULL,
+  `product_price` double DEFAULT NULL,
+  `product_sale_quantity` int(11) DEFAULT NULL,
+  `create_date` datetime DEFAULT NULL,
+  `remark` varchar(255) DEFAULT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
+  `member_id` bigint(20) DEFAULT NULL,
+  `product_taobao_id` varchar(255) DEFAULT NULL,
+  `store_name` varchar(255) DEFAULT NULL,
+  `source_data` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for t_authority
@@ -79,7 +119,7 @@ CREATE TABLE `t_manyorderbill` (
   `member_id` bigint(255) unsigned NOT NULL DEFAULT '0' COMMENT '会员Id',
   `status` varchar(50) DEFAULT NULL COMMENT '状态',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for t_manyorderdetail
@@ -95,7 +135,7 @@ CREATE TABLE `t_manyorderdetail` (
   `product_url` varchar(2048) DEFAULT NULL,
   `taobao_word_id` bigint(20) DEFAULT NULL COMMENT '生成的淘口令Id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for t_member
@@ -121,7 +161,7 @@ CREATE TABLE `t_productcatchlist` (
   `product_ids` varchar(3000) DEFAULT NULL,
   `id` int(255) unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for t_stuckfirstscreenbill
@@ -138,7 +178,7 @@ CREATE TABLE `t_stuckfirstscreenbill` (
   `remark` varchar(255) DEFAULT NULL,
   `competitor` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for t_taobaoshop
@@ -154,7 +194,7 @@ CREATE TABLE `t_taobaoshop` (
   `total_sale_quantity` int(11) DEFAULT NULL,
   `total_sale` double(14,4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for t_taobaoshopcapturebill
@@ -170,7 +210,7 @@ CREATE TABLE `t_taobaoshopcapturebill` (
   `remark` varchar(255) DEFAULT NULL,
   `removed` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for t_taobaoshopproduct
@@ -206,7 +246,7 @@ CREATE TABLE `t_taobaoword` (
   `failure_date` datetime DEFAULT NULL,
   `member_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for t_taobaowordbill
