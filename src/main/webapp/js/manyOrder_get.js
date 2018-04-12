@@ -20,8 +20,8 @@ $(function () {
     $('.table-content').html(html)
     $('.shortLink').text(data.manyOrderBill.shortLink)
     $('.ercode').qrcode({
-      width   : 100,
-      height  : 100,
+      width   : 200,
+      height  : 200,
       text    : data.manyOrderBill.shortLink
     })
   })

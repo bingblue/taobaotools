@@ -18,8 +18,8 @@ $(function () {
     $('.createDate').text($.muNumToLocalDate(i.createDate))
     $('.url').text(i.taobaoWord.url)
     $('.ercode').qrcode({
-      width   : 100,
-      height  : 100,
+      width   : 200,
+      height  : 200,
       text    : i.taobaoWord.url
     })
   })
