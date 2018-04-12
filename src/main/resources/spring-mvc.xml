@@ -10,10 +10,21 @@
                         http://www.springframework.org/schema/mvc  
                         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
     <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
-    <context:component-scan base-package="com.bingblue.TaobaoTools.controller" />
-    <context:component-scan base-package="com.bingblue.TaobaoTools.service" />
     <context:component-scan base-package="com.bingblue.TaobaoTools.dao" />
+    <context:component-scan base-package="com.bingblue.TaobaoTools.service" />
+    <context:component-scan base-package="com.bingblue.TaobaoTools.controller" />
     
+    <!-- my bean -->
+    <bean id="taobaoShopSpiderLocalCookieStore" class="com.bingblue.TaobaoTools.service.LocalCookieStore">
+        <property name="type">
+            <value>TaobaoShop</value>
+        </property>
+    </bean>
+    <bean id="taobaoProductSpiderLocalCookieStore" class="com.bingblue.TaobaoTools.service.LocalCookieStore">
+        <property name="type">
+            <value>TaobaoProduct</value>
+        </property>
+    </bean>
     <!-- 解决ResponseBody 返回 json 中文乱码问题
     1.jackson依赖
     2.SpringMVC配置文件中加上<mvc:annotation-driven/>注解

@@ -6,6 +6,7 @@
 package com.bingblue.TaobaoTools.service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.bingblue.TaobaoTools.controller.Tools;
 import com.bingblue.TaobaoTools.dao.StuckFirstScreenBillDao;
 import com.bingblue.TaobaoTools.dao.TaobaoWordDao;
 import com.bingblue.TaobaoTools.pojo.BillStatus;
@@ -74,6 +75,7 @@ public class StuckFirstScreenService {
 
     /**
      * 生成淘口令
+     *
      * @param stuckFirstScreenBill 待生成淘口令的卡首屏单
      * @return 生成好的卡首屏单含TaobaoWord
      */
@@ -159,14 +161,15 @@ public class StuckFirstScreenService {
 
     /**
      * 计算指定会员当下有多少卡首屏单
+     *
      * @param memberId 会员Id
      * @return 数量
      */
     public long countStuckFirstScreenBillByMemberId(Long memberId, Date startDate, Date endDate) {
         return stuckFirstScreenBillDao.count(memberId, startDate, endDate);
     }
-    
-    public StuckFirstScreenBill getOneHasTaobaoWord(Long id, Long memberId){
+
+    public StuckFirstScreenBill getOneHasTaobaoWord(Long id, Long memberId) {
         return stuckFirstScreenBillDao.selectOneHasTaobaoWord(id, memberId);
     }
 
@@ -178,17 +181,9 @@ public class StuckFirstScreenService {
      * @return
      */
     public static final String findProductIdFromUrl(String url) {
-        int idStartIndex = url.indexOf("&id=");
-        if (idStartIndex >= 0) {
-            int idEndIndex = url.indexOf("&", idStartIndex + 1);
-            if (idEndIndex >= 0) {
-                return url.substring(idStartIndex + 4, idEndIndex);
-            } else {
-                return null;
-            }
-        } else {
-            return null;
-        }
+        String id = Tools.getQueryString(url, "id");
+        System.out.println("id=" + id);
+        return id;
     }
 
 }

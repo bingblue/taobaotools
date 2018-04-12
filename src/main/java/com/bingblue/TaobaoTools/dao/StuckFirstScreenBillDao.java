@@ -35,19 +35,20 @@ public class StuckFirstScreenBillDao {
         StuckFirstScreenBillExample ex = new StuckFirstScreenBillExample();
         ex.setStartRow(page);
         ex.setPageSize(quantity);
-        ex.createCriteria().andCreateDateGreaterThanOrEqualTo(startDate).andCreateDateLessThanOrEqualTo(endDate).andMemberIdEqualTo(memberId);
+        ex.createCriteria().andMemberIdEqualTo(memberId);
+        //ex.createCriteria().andCreateDateGreaterThanOrEqualTo(startDate).andCreateDateLessThanOrEqualTo(endDate).andMemberIdEqualTo(memberId);
         return mapper.selectHasTaobaoWord(ex);
     }
     
     public long count(Long memberId, Date startDate, Date endDate){
         StuckFirstScreenBillExample ex = new StuckFirstScreenBillExample();
         StuckFirstScreenBillExample.Criteria criteria = ex.createCriteria().andMemberIdEqualTo(memberId);
-        if(startDate != null){
-            criteria.andCreateDateGreaterThanOrEqualTo(startDate);
-        }
-        if(endDate != null){
-            criteria.andCreateDateLessThanOrEqualTo(endDate);
-        }
+//        if(startDate != null){
+//            criteria.andCreateDateGreaterThanOrEqualTo(startDate);
+//        }
+//        if(endDate != null){
+//            criteria.andCreateDateLessThanOrEqualTo(endDate);
+//        }
         return mapper.countByExample(ex);
     }
     
